@@ -1,8 +1,8 @@
-package Entities.Enemy;
+package Entities.Dynamic.Enemy;
 
-import Entities.MobileEntity;
+import Entities.Dynamic.DynamicEntity;
 
-public abstract class Enemy extends MobileEntity {
+public abstract class Enemy extends DynamicEntity {
     protected int value;
 
     public Enemy(int x, int y) {

@@ -1,6 +1,8 @@
-package Entities;
+package Entities.Dynamic;
 
-public class Bomber extends MobileEntity {
+import Entities.Dynamic.DynamicEntity;
+
+public class Bomber extends DynamicEntity {
     protected int hearts;
     protected int numBomb;
     protected int score;

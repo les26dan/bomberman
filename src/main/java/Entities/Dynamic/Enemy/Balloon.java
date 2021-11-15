@@ -1,4 +1,4 @@
-package Entities.Enemy;
+package Entities.Dynamic.Enemy;
 
 public class Balloon extends Enemy {
 
