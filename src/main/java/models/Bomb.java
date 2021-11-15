@@ -9,6 +9,13 @@ public class Bomb extends Entity {
         this.timeToExplode = timeToExplode;
     }
 
+    public Bomb(int x, int y, int timeToExplode, int sizeFlame, boolean exploded) {
+        super(x, y);
+        this.timeToExplode = timeToExplode;
+        this.sizeFlame = sizeFlame;
+        this.exploded = exploded;
+    }
+
     public int getSizeFlame() {
         return sizeFlame;
     }
