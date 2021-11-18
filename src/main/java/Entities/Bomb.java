@@ -31,4 +31,9 @@ public class Bomb extends Entity {
     public void setExploded(boolean exploded) {
         this.exploded = exploded;
     }
+
+    @Override
+    public void update() {
+
+    }
 }

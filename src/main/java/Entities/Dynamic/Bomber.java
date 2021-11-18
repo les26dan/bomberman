@@ -48,4 +48,9 @@ public class Bomber extends DynamicEntity {
     public void setScore(int score) {
         this.score = score;
     }
+
+    @Override
+    public void update() {
+
+    }
 }
