@@ -18,7 +18,8 @@ public class Game extends Canvas {
   private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
   private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 
-  public static final int WIDTH = 240, HEIGHT = 208;
+  public static final int BOX_SIZE = 16;
+  public static final int WIDTH = BOX_SIZE * 31, HEIGHT = BOX_SIZE * 13;
   public static int SCALE = 3;
 
 
@@ -37,6 +38,7 @@ public class Game extends Canvas {
       return;
     }
 //    screen.clear();
+    gameContainer.newGame();
     gameContainer.render(screen);
     for (int i = 0; i < pixels.length; i++) {
       pixels[i] = screen.pixels[i];
