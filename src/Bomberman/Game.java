@@ -10,50 +10,57 @@ import java.awt.image.DataBufferInt;
 
 public class Game extends Canvas {
 
-  private GameContainer gameContainer;
-  private Screen screen;
-  private Keyboard input;
-  private boolean running = false;
+    private GameContainer gameContainer;
+    private Screen screen;
+    private Keyboard input;
+    private boolean running = false;
 
-  private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-  private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
+    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
-  public static final int BOX_SIZE = 16;
-  public static final int WIDTH = BOX_SIZE * 31, HEIGHT = BOX_SIZE * 13;
-  public static int SCALE = 3;
-
-
-  public Game() {
-    screen = new Screen(WIDTH, HEIGHT);
-    input = new Keyboard();
-    gameContainer = new GameContainer(this, input, screen);
-    addKeyListener(input);
-  }
+    public static final int BOX_SIZE = 16;
+    public static final int WIDTH = BOX_SIZE * 31, HEIGHT = BOX_SIZE * 13;
+    public static int SCALE = 3;
 
 
-  private void renderGame() {
-    BufferStrategy bs = getBufferStrategy();
-    if(bs == null) {
-      createBufferStrategy(3);
-      return;
+    public Game() {
+        screen = new Screen(WIDTH, HEIGHT);
+        input = new Keyboard();
+        gameContainer = new GameContainer(this, input, screen);
+        addKeyListener(input);
     }
+
+
+    private void renderGame() {
+        BufferStrategy bs = getBufferStrategy();
+        if (bs == null) {
+            createBufferStrategy(3);
+            return;
+        }
 //    screen.clear();
-    gameContainer.newGame();
-    gameContainer.render(screen);
-    for (int i = 0; i < pixels.length; i++) {
-      pixels[i] = screen.pixels[i];
+        gameContainer.newGame();
+        gameContainer.render(screen);
+        for (int i = 0; i < pixels.length; i++) {
+            pixels[i] = screen.pixels[i];
+        }
+        Graphics g = bs.getDrawGraphics();
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        g.dispose();
+        bs.show();
     }
-    Graphics g = bs.getDrawGraphics();
-    g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-    g.dispose();
-    bs.show();
-  }
 
-  public void start() {
-      running = true;
-      while(running) {
-        renderGame();
-      }
-  }
+    void update() {
+        input.update();
+        gameContainer.update();
+    }
+
+    public void start() {
+        running = true;
+        final double nanosec = 1000000000.0 / 60.0;
+        while (running) {
+            update();
+            renderGame();
+        }
+    }
 
 }

@@ -19,16 +19,17 @@ public class Screen {
         }
     }
 
-    public void renderEntity(int xp, int yp, Entity entity) {
-        for (int y = 0; y < entity.getSprite().getSize(); y++) {
-            int ya = y + yp;
-            for (int x = 0; x < entity.getSprite().getSize(); x++) {
-                int xa = x + xp;
-                if (xa < -entity.getSprite().getSize() || xa >= WIDTH || ya < 0 || ya >= HEIGHT)
+    public void renderEntity(int x, int y, Entity entity) {
+        for (int v = 0; v < entity.getSprite().getSize(); v++) {
+            int yy = v + y;
+            for (int u = 0; u < entity.getSprite().getSize(); u++) {
+                int xx = u + x;
+                if (yy < 0 || yy >= HEIGHT  || xx >= WIDTH)
                     break;
-                if (xa < 0) xa = 0;
-                int color = entity.getSprite().getPixel(x + y * entity.getSprite().getSize());
-                if (color != backgroundColor) pixels[xa + ya * WIDTH] = color;
+                if (xx < 0) xx = 0;
+                int color = entity.getSprite().getPixel(u + v * entity.getSprite().getSize());
+                if (color != backgroundColor)
+                    pixels[xx + yy * WIDTH] = color;
             }
         }
     }

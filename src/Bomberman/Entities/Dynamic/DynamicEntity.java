@@ -4,7 +4,8 @@ import Bomberman.Entities.Entity;
 
 public abstract class DynamicEntity extends Entity {
     protected int speed;
-    protected int direction;
+    protected int direction ;
+    protected boolean moving;
 
     public DynamicEntity(int x, int y, int speed, int direction) {
         super(x, y);
@@ -15,4 +16,9 @@ public abstract class DynamicEntity extends Entity {
     public DynamicEntity(int x, int y) {
         super(x, y);
     }
+
+    @Override
+    public abstract void update();
+    protected abstract boolean canMove(int x, int y);
+    protected abstract void move();
 }
