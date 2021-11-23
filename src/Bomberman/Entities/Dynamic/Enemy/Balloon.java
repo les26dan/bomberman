@@ -14,6 +14,13 @@ public class Balloon extends Enemy {
     }
     @Override
     public void render(Screen screen){
+    }
+    @Override
+    protected void move(){
 
+    }
+    @Override
+    protected boolean canMove(int x, int y){
+        return true;
     }
 }

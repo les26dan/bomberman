@@ -9,10 +9,12 @@ public abstract class Entity {
     protected int y;
     protected Sprite sprite;
     protected GameContainer gameContainer;
+    protected boolean block;
 
     public Entity(int x, int y) {
         this.x = x;
         this.y = y;
+        block = false;
     }
     public abstract void render(Screen screen);
     public abstract void update();
@@ -27,5 +29,9 @@ public abstract class Entity {
 
     public int getY() {
         return y;
+    }
+
+    public boolean getBlock() {
+        return block;
     }
 }

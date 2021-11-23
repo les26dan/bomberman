@@ -6,25 +6,21 @@ public class Sprite {
   public final int SIZE;
   private int x, y;
   public int[] pixels;
-  protected int readWidth;
-  protected int realHeight;
 
-  public static Sprite player_up = new Sprite(16, 0, 0, SpriteLoader.origin, 12, 16);
-  public static Sprite player_down = new Sprite(16, 2, 0, SpriteLoader.origin, 12, 15);
-  public static Sprite player_left = new Sprite(16, 3, 0, SpriteLoader.origin, 10, 15);
-  public static Sprite player_right = new Sprite(16, 1, 0, SpriteLoader.origin, 10, 16);
+  public static Sprite player_up = new Sprite(16, 0, 0, SpriteLoader.origin);
+  public static Sprite player_down = new Sprite(16, 2, 0, SpriteLoader.origin);
+  public static Sprite player_left = new Sprite(16, 3, 0, SpriteLoader.origin);
+  public static Sprite player_right = new Sprite(16, 1, 0, SpriteLoader.origin);
 
-  public static Sprite grass = new Sprite(16, 6, 0, SpriteLoader.origin, 16, 16);
-  public static Sprite brick = new Sprite(16, 7, 0, SpriteLoader.origin, 16, 16);
-  public static Sprite wall = new Sprite(16, 5, 0, SpriteLoader.origin, 16, 16);
-  public static Sprite portal = new Sprite(16, 4, 0, SpriteLoader.origin, 14, 14);
+  public static Sprite grass = new Sprite(16, 6, 0, SpriteLoader.origin);
+  public static Sprite brick = new Sprite(16, 7, 0, SpriteLoader.origin);
+  public static Sprite wall = new Sprite(16, 5, 0, SpriteLoader.origin);
+  public static Sprite portal = new Sprite(16, 4, 0, SpriteLoader.origin);
 
-  public Sprite(int size, int x, int y, SpriteLoader sheet, int realWidth, int realHeight) {
+  public Sprite(int size, int x, int y, SpriteLoader sheet) {
     this.SIZE = size;
     this.x = x * SIZE;
     this.y = y * SIZE;
-    this.readWidth = realWidth;
-    this.realHeight = realHeight;
     this.sheet = sheet;
     pixels = new int[SIZE * SIZE];
     load();
