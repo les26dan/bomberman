@@ -68,7 +68,7 @@ public class Bomber extends DynamicEntity {
     @Override
     public void render(Screen screen) {
         chooseSprite();
-        screen.renderEntity( x,  y - sprite.SIZE, this);
+        screen.renderEntity( x, y - sprite.SIZE, this);
     }
 
     @Override

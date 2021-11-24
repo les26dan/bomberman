@@ -56,9 +56,19 @@ public class Game extends Canvas {
 
     public void start() {
         running = true;
-        final double nanosec = 1000000000.0 / 60.0;
+        final double rate = 64.0;
+        long  lastTime = System.nanoTime();
+        long timer = System.currentTimeMillis();
+        double cnt = 0;
+        int frames = 0;
         while (running) {
-            update();
+            long cur = System.nanoTime();
+            cnt += (cur - lastTime) / (1000000000.0 / rate);
+            lastTime = cur;
+            while(cnt >= 1) {
+                update();
+                cnt--;
+            }
             renderGame();
         }
     }
