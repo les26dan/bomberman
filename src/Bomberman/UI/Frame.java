@@ -1,6 +1,7 @@
 package Bomberman.UI;
 
 import Bomberman.Game;
+import Bomberman.graphics.Sprite;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,7 @@ public class Frame extends JFrame {
   private Game game;
 
   public Frame() {
+    Sprite.init();
     headPanel = new JPanel(new BorderLayout());
     gamePanel = new GamePanel();
     headPanel.add(gamePanel, BorderLayout.PAGE_END);

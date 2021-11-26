@@ -62,13 +62,14 @@ public class Bomber extends DynamicEntity {
 
     @Override
     public void update() {
+        frame = (frame + 1)  % 1000;
         move();
     }
 
     @Override
     public void render(Screen screen) {
         chooseSprite();
-        screen.renderEntity( x,  y - sprite.SIZE, this);
+        screen.renderEntity( x, y - sprite.SIZE, this);
     }
 
     @Override
@@ -91,7 +92,8 @@ public class Bomber extends DynamicEntity {
             direction = 1;
             u += 1;
         }
-
+        if(u != x || v != y) moving = true;
+        else moving = false;
         if (canMove(u, v)) {
             x = u;
             y = v;
@@ -110,23 +112,38 @@ public class Bomber extends DynamicEntity {
     }
 
     private void chooseSprite() {
+        int _frame = (frame / 10) % 3;
         switch (direction) {
             case 0:
-                sprite = Sprite.player_up;
+                sprite = Sprite.player_up[0];
+                if(moving) {
+                    sprite = Sprite.player_up[_frame];
+                }
                 break;
             case 1:
-                sprite = Sprite.player_right;
+                sprite = Sprite.player_right[0];
+                if(moving) {
+                    sprite = Sprite.player_right[_frame];
+                }
                 break;
             case 2:
-                sprite = Sprite.player_down;
+                sprite = Sprite.player_down[0];
+                if(moving) {
+                    sprite = Sprite.player_down[_frame];
+                }
                 break;
             case 3:
-                sprite = Sprite.player_left;
+                sprite = Sprite.player_left[0];
+                if(moving) {
+                    sprite = Sprite.player_left[_frame];
+                }
 
                 break;
             default:
-                sprite = Sprite.player_right;
-
+                sprite = Sprite.player_right[0];
+                if(moving) {
+                    sprite = Sprite.player_right[_frame];
+                }
                 break;
         }
     }
