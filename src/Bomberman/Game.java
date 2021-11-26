@@ -2,6 +2,7 @@ package Bomberman;
 
 import Bomberman.Keyboard.Keyboard;
 import Bomberman.graphics.Screen;
+import Bomberman.graphics.Sprite;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;

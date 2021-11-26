@@ -6,7 +6,7 @@ public abstract class DynamicEntity extends Entity {
     protected int speed;
     protected int direction ;
     protected boolean moving;
-
+    protected int frame;
     public DynamicEntity(int x, int y, int speed, int direction) {
         super(x, y);
         this.speed = 1;
