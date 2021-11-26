@@ -17,8 +17,7 @@ public abstract class DynamicEntity extends Entity {
         super(x, y);
     }
 
-    @Override
-    public abstract void update();
     protected abstract boolean canMove(int x, int y);
+
     protected abstract void move();
 }
