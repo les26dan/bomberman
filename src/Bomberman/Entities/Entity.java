@@ -5,13 +5,13 @@ import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
 
 public abstract class Entity {
-    protected int x;
-    protected int y;
+    protected double x;
+    protected double y;
     protected Sprite sprite;
     protected GameContainer gameContainer;
     protected boolean block;
 
-    public Entity(int x, int y) {
+    public Entity(double x, double y) {
         this.x = x;
         this.y = y;
         block = false;
@@ -23,11 +23,11 @@ public abstract class Entity {
         return sprite;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
