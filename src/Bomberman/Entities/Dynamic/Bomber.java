@@ -14,7 +14,7 @@ public class Bomber extends DynamicEntity {
     protected int sizeBomb;
     protected Keyboard input;
 
-    public Bomber(int x, int y, int speed, int direction, int hearts, int numBomb, int score, int sizeBomb) {
+    public Bomber(double x, double y, int speed, int direction, int hearts, int numBomb, int score, int sizeBomb) {
         super(x, y, speed, direction);
         this.hearts = hearts;
         this.numBomb = numBomb;
@@ -22,7 +22,7 @@ public class Bomber extends DynamicEntity {
         this.sizeBomb = sizeBomb;
     }
 
-    public Bomber(int x, int y, GameContainer gameContainer) {
+    public Bomber(double x, double y, GameContainer gameContainer) {
         super(x, y);
         this.gameContainer = gameContainer;
         input = gameContainer.getInput();
@@ -36,7 +36,7 @@ public class Bomber extends DynamicEntity {
         this.hearts = hearts;
     }
 
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
@@ -68,14 +68,14 @@ public class Bomber extends DynamicEntity {
 
     @Override
     public void render(Screen screen) {
-        chooseSprite();
-        screen.renderEntity( x, y - sprite.SIZE, this);
+        loadSprite();
+        screen.renderEntity( (int)x, (int)y - sprite.SIZE, this);
     }
 
     @Override
     protected void move() {
-        int u = x;
-        int v = y;
+        double u = x;
+        double v = y;
         if (input.up) {
             direction = 0;
             v -= 1;
@@ -92,8 +92,7 @@ public class Bomber extends DynamicEntity {
             direction = 1;
             u += 1;
         }
-        if(u != x || v != y) moving = true;
-        else moving = false;
+        moving = u != x || v != y;
         if (canMove(u, v)) {
             x = u;
             y = v;
@@ -101,48 +100,48 @@ public class Bomber extends DynamicEntity {
     }
 
     @Override
-    protected boolean canMove(int x, int y) {
+    protected boolean canMove(double x, double y) {
         for (int d = 0; d < 4; d++) {
-            int posX = (x + d % 2 * 11) / Game.BOX_SIZE;
-            int posY = (y + d / 2 * 12 - 13) / Game.BOX_SIZE;
+            int posX = (int) ((x + d % 2 * 11)*1.0 / Game.BOX_SIZE*1.0);
+            int posY = (int) ((y + d / 2 * 12 - 13)*1.0 / Game.BOX_SIZE*1.0);
             Entity e = gameContainer.getEntity(posX, posY, this);
             if (e.getBlock()) return false;
         }
         return true;
     }
 
-    private void chooseSprite() {
+    private void loadSprite() {
         int _frame = (frame / 10) % 3;
         switch (direction) {
             case 0:
-                sprite = Sprite.player_up[0];
+                sprite = Sprite.bomber_up[0];
                 if(moving) {
-                    sprite = Sprite.player_up[_frame];
+                    sprite = Sprite.bomber_up[_frame];
                 }
                 break;
             case 1:
-                sprite = Sprite.player_right[0];
+                sprite = Sprite.bomber_right[0];
                 if(moving) {
-                    sprite = Sprite.player_right[_frame];
+                    sprite = Sprite.bomber_right[_frame];
                 }
                 break;
             case 2:
-                sprite = Sprite.player_down[0];
+                sprite = Sprite.bomber_down[0];
                 if(moving) {
-                    sprite = Sprite.player_down[_frame];
+                    sprite = Sprite.bomber_down[_frame];
                 }
                 break;
             case 3:
-                sprite = Sprite.player_left[0];
+                sprite = Sprite.bomber_left[0];
                 if(moving) {
-                    sprite = Sprite.player_left[_frame];
+                    sprite = Sprite.bomber_left[_frame];
                 }
 
                 break;
             default:
-                sprite = Sprite.player_right[0];
+                sprite = Sprite.bomber_right[0];
                 if(moving) {
-                    sprite = Sprite.player_right[_frame];
+                    sprite = Sprite.bomber_right[_frame];
                 }
                 break;
         }
