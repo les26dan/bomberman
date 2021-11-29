@@ -1,6 +1,7 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
 import Bomberman.graphics.Screen;
+import Bomberman.graphics.Sprite;
 
 public class Oneal extends Enemy {
 
@@ -10,18 +11,6 @@ public class Oneal extends Enemy {
 
 
     @Override
-    public void update() {
-
-    }
-    @Override
-    public void render(Screen screen) {
-    }
-    @Override
-    protected void move(){
-
-    }
-    @Override
-    protected boolean canMove(int x, int y){
-        return true;
+    protected void loadSprite() {
     }
 }

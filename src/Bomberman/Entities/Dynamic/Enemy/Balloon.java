@@ -1,26 +1,26 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
-import Bomberman.graphics.Screen;
+import Bomberman.GameContainer;
+import Bomberman.graphics.Sprite;
 
 public class Balloon extends Enemy {
 
     public Balloon(int x, int y, int speed, int direction, int value) {
         super(x, y, speed, direction, value);
     }
-
-    @Override
-    public void update() {
-
+    public Balloon(int x, int y, GameContainer gameContainer) {
+        super(x, y);
+        this.gameContainer = gameContainer;
     }
     @Override
-    public void render(Screen screen){
-    }
-    @Override
-    protected void move(){
-
-    }
-    @Override
-    protected boolean canMove(int x, int y){
-        return true;
+    protected void loadSprite() {
+        switch (direction) {
+            case 1:
+                sprite = Sprite.balloom_right[0];
+                break;
+            case 3:
+                sprite = Sprite.balloom_left[0];
+                break;
+        }
     }
 }
