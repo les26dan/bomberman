@@ -9,6 +9,9 @@ import Bomberman.graphics.Screen;
 import Bomberman.level.Level;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameContainer {
 
@@ -16,8 +19,8 @@ public class GameContainer {
     protected Keyboard input;
     protected Screen screen;
     protected Level level;
-    public Bomber bomber;
     public Entity[] entities;
+    public List<DynamicEntity> dynamicEntities = new ArrayList<>();
 
     public GameContainer(Game game, Keyboard input, Screen screen) {
         this.game = game;
@@ -31,11 +34,12 @@ public class GameContainer {
 
     public void render(Screen screen) {
         renderEntities(screen);
-        renderMobs(screen);
+        renderDynamicEntity(screen);
     }
 
-    protected void renderMobs(Screen screen) {
-        bomber.render(screen);
+    protected void renderDynamicEntity(Screen screen) {
+        for(DynamicEntity d: dynamicEntities)
+            d.render(screen);
     }
     protected void renderEntities(Screen screen) {
         for(int i = 0; i < level.getHeight(); i++)
@@ -47,7 +51,6 @@ public class GameContainer {
             level = new Level("levels/Level" + num + ".txt", this);
             entities = new Entity[level.getHeight() * level.getWidth()];
             level.createEntities();
-            bomber = new Bomber(16,32,this);
         }
         catch (IOException e) {
             System.out.println("");
@@ -56,6 +59,9 @@ public class GameContainer {
 
     public void addEntitie(int pos, Entity entity) {
         entities[pos] = entity;
+    }
+    public void addDynamicEntity(DynamicEntity d) {
+        if(dynamicEntities.size() < 2) dynamicEntities.add(d);
     }
     void update() {
         updateEntities();
@@ -67,7 +73,9 @@ public class GameContainer {
         }
     }
     void updateDynamic() {
-        bomber.update();
+        for(DynamicEntity d: dynamicEntities){
+            d.update();
+        }
     }
 
     public Keyboard getInput() {
