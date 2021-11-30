@@ -2,7 +2,7 @@ package Bomberman.graphics;
 
 import Bomberman.Game;
 
-public class Coordinate {
+public class Unit {
 
     public static int pixelToPos(double i)
 
