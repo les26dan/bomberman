@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 public class OverlaidEntity extends Entity {
     private ArrayDeque<Entity> entities;
 
-    OverlaidEntity(int x, int y, Entity ... entities){
+    public OverlaidEntity(int x, int y, Entity ... entities){
         super(x, y);
         this.entities = new ArrayDeque<>();
         for(Entity entity : entities) {
