@@ -1,11 +1,13 @@
 package Bomberman;
 
+import Bomberman.Entities.Bomb;
 import Bomberman.Entities.Box.Wall;
 import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
 import Bomberman.Keyboard.Keyboard;
 import Bomberman.graphics.Screen;
+import Bomberman.graphics.Unit;
 import Bomberman.level.Level;
 
 import java.io.IOException;
@@ -21,6 +23,8 @@ public class GameContainer {
     protected Level level;
     public Entity[] entities;
     public List<DynamicEntity> dynamicEntities = new ArrayList<>();
+    public List<Bomb> bombs = new ArrayList<>();
+    protected boolean plantedBomb[];
 
     public GameContainer(Game game, Keyboard input, Screen screen) {
         this.game = game;
@@ -34,11 +38,16 @@ public class GameContainer {
 
     public void render(Screen screen) {
         renderEntities(screen);
+        renderBombs(screen);
         renderDynamicEntity(screen);
     }
 
     protected void renderDynamicEntity(Screen screen) {
         for(DynamicEntity d: dynamicEntities)
+            d.render(screen);
+    }
+    protected void renderBombs(Screen screen) {
+        for(Bomb d: bombs)
             d.render(screen);
     }
     protected void renderEntities(Screen screen) {
@@ -50,6 +59,7 @@ public class GameContainer {
         try {
             level = new Level("levels/Level" + num + ".txt", this);
             entities = new Entity[level.getHeight() * level.getWidth()];
+            plantedBomb = new boolean[level.getHeight() * level.getWidth()];
             level.createEntities();
         }
         catch (IOException e) {
@@ -61,11 +71,19 @@ public class GameContainer {
         entities[pos] = entity;
     }
     public void addDynamicEntity(DynamicEntity d) {
-        if(dynamicEntities.size() < 2) dynamicEntities.add(d);
+            dynamicEntities.add(d);
+    }
+    public void addBomb(Bomb b) {
+        bombs.add(b);
+        plantedBomb[Unit.pixelToPos(b.getX()) + Unit.pixelToPos(b.getY()) * level.getWidth()] = true;
+    }
+    public boolean checkBomb(int posX, int posY) {
+        return !plantedBomb[posX + posY * level.getWidth()];
     }
     void update() {
         updateEntities();
         updateDynamic();
+        updateBombs();
     }
     void updateEntities() {
         for(Entity e: entities){
@@ -77,14 +95,25 @@ public class GameContainer {
             d.update();
         }
     }
-
+    void updateBombs() {
+        for(Bomb b: bombs){
+            b.update();
+        }
+    }
     public Keyboard getInput() {
         return input;
     }
-    public Entity getEntity(int posX, int posY, DynamicEntity dynamic) {
-
-        Entity entity = getEntityAt(posX, posY);
-        return entity;
+    public List<Bomb> getBombs() {
+        return bombs;
+    }
+    public Entity getEntity(int posX, int posY) {
+        if(plantedBomb[posX + posY * level.getWidth()]) {
+            for(Bomb b: bombs) {
+                if(Unit.pixelToPos(b.getX()) == posX && Unit.pixelToPos(b.getY()) == posY)
+                    return b;
+            }
+        }
+        return getEntityAt((int)posX, (int)posY);
     }
     public Entity getEntityAt(int posX , int posY) {
         return entities[posX + posY * level.getWidth()];

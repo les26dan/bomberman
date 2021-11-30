@@ -11,7 +11,7 @@ import Bomberman.Entities.Dynamic.Enemy.Balloon;
 import Bomberman.Entities.OverlaidEntity;
 import Bomberman.Game;
 import Bomberman.GameContainer;
-import Bomberman.graphics.Coordinate;
+import Bomberman.graphics.Unit;
 import Bomberman.graphics.Sprite;
 
 import java.io.BufferedReader;
@@ -65,10 +65,10 @@ public class Level {
                         break;
                     case '1':
                         gameContainer.addEntitie(pos, new Grass(x, y));
-                        gameContainer.addDynamicEntity(new Balloon(Coordinate.posToPixel(x), Coordinate.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        gameContainer.addDynamicEntity(new Balloon(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
                         break;
                     case 'p':
-                        gameContainer.addDynamicEntity(new Bomber(Coordinate.posToPixel(x), Coordinate.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        gameContainer.addDynamicEntity(new Bomber(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
                         gameContainer.addEntitie(pos, new Grass(x, y));
                         break;
                     case 'b':
