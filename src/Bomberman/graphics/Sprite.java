@@ -14,6 +14,7 @@ public class Sprite {
 
     public static Sprite[] balloom_left = new Sprite[3];
     public static Sprite[] balloom_right = new Sprite[3];
+    public static Sprite[] bomb = new Sprite[3];
     public static Sprite balloom_dead;
 
     public static Sprite grass = new Sprite(16, 6, 0, SpriteLoader.origin);
@@ -24,6 +25,7 @@ public class Sprite {
     public static Sprite speedItem = new Sprite(16, 0, 10, SpriteLoader.origin);
     public static Sprite flameItem = new Sprite(16, 1, 10, SpriteLoader.origin);
     public static Sprite bombItem = new Sprite(16, 2, 10, SpriteLoader.origin);
+
 
 
     public Sprite(int size, int x, int y, SpriteLoader sheet) {
@@ -50,6 +52,10 @@ public class Sprite {
         bomber_right[0] = new Sprite(16, 1, 0, SpriteLoader.origin);
         bomber_right[1] = new Sprite(16, 1, 1, SpriteLoader.origin);
         bomber_right[2] = new Sprite(16, 1, 2, SpriteLoader.origin);
+
+        bomb[0] = new Sprite(16, 0, 3, SpriteLoader.origin);
+        bomb[1] = new Sprite(16, 1, 3, SpriteLoader.origin);
+        bomb[2] = new Sprite(16, 2, 3, SpriteLoader.origin);
 
         balloom_left[0]= new Sprite(16, 9, 0, SpriteLoader.origin);
         balloom_left[1]= new Sprite(16, 9, 1, SpriteLoader.origin);
