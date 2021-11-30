@@ -1,9 +1,14 @@
 package Bomberman.level;
 
 import Bomberman.Entities.Box.Grass;
+import Bomberman.Entities.Box.Item.BombItem;
+import Bomberman.Entities.Box.Item.FlameItem;
+import Bomberman.Entities.Box.Item.SpeedItem;
+import Bomberman.Entities.Box.Portal;
 import Bomberman.Entities.Box.Wall;
 import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Dynamic.Enemy.Balloon;
+import Bomberman.Entities.OverlaidEntity;
 import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Coordinate;
@@ -64,6 +69,20 @@ public class Level {
                         break;
                     case 'p':
                         gameContainer.addDynamicEntity(new Bomber(Coordinate.posToPixel(x), Coordinate.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        gameContainer.addEntitie(pos, new Grass(x, y));
+                        break;
+                    case 'b':
+                        gameContainer.addEntitie(pos, new OverlaidEntity(x, y, new BombItem(x, y), new Grass(x, y)));
+                        break;
+                    case 'f':
+                        gameContainer.addEntitie(pos, new OverlaidEntity(x, y, new FlameItem(x, y), new Grass(x, y)));
+                        break;
+                    case 's':
+                        gameContainer.addEntitie(pos, new OverlaidEntity(x, y, new SpeedItem(x, y), new Grass(x, y)));
+                        break;
+                    case 'x':
+                        gameContainer.addEntitie(pos, new OverlaidEntity(x, y, new Portal(x, y), new Grass(x, y)));
+                        break;
                     default:
                         gameContainer.addEntitie(pos, new Grass(x, y));
                         break;
