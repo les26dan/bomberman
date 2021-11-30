@@ -1,7 +1,7 @@
 package Bomberman.Entities.Box;
 
 import Bomberman.Entities.Entity;
-import Bomberman.graphics.Coordinate;
+import Bomberman.graphics.Unit;
 import Bomberman.graphics.Screen;
 
 public abstract class Box extends Entity {
@@ -15,6 +15,6 @@ public abstract class Box extends Entity {
 
     @Override
     public void render(Screen screen) {
-        screen.renderEntity( Coordinate.posToPixel(x), Coordinate.posToPixel(y), this);
+        screen.renderEntity( Unit.posToPixel(x), Unit.posToPixel(y), this);
     }
 }

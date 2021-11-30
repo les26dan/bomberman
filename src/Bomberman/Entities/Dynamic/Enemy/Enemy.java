@@ -3,7 +3,7 @@ package Bomberman.Entities.Dynamic.Enemy;
 import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
-import Bomberman.graphics.Coordinate;
+import Bomberman.graphics.Unit;
 import Bomberman.graphics.Screen;
 
 public abstract class Enemy extends DynamicEntity {
@@ -79,7 +79,7 @@ public abstract class Enemy extends DynamicEntity {
             xx += 15;
             yy += 8;
         }
-        Entity e = gameContainer.getEntity(Coordinate.pixelToPos(xx) + (int) addX, Coordinate.pixelToPos(yy) + (int) addY, this);
+        Entity e = gameContainer.getEntity(Unit.pixelToPos(xx) + (int) addX, Unit.pixelToPos(yy) + (int) addY);
         return !e.getBlock();
     }
 }

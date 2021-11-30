@@ -23,6 +23,9 @@ public abstract class Entity {
         return sprite;
     }
 
+    public void setBlock(boolean block) {
+        this.block = block;
+    }
     public double getX() {
         return x;
     }
