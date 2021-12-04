@@ -118,4 +118,12 @@ public class GameContainer {
     public Entity getEntityAt(int posX , int posY) {
         return entities[posX + posY * level.getWidth()].getEntity();
     }
+    public Bomber getBomber() {
+        for(DynamicEntity dynamicEntity : dynamicEntities) {
+            if(dynamicEntity instanceof Bomber) {
+                return (Bomber) dynamicEntity;
+            }
+        }
+        return null;
+    }
 }
