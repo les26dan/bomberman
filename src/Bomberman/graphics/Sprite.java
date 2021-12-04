@@ -21,6 +21,7 @@ public class Sprite {
     public static Sprite brick = new Sprite(16, 7, 0, SpriteLoader.origin);
     public static Sprite wall = new Sprite(16, 5, 0, SpriteLoader.origin);
     public static Sprite portal = new Sprite(16, 4, 0, SpriteLoader.origin);
+    public static Sprite[] broken_brick = new Sprite[3];
 
     public static Sprite speedItem = new Sprite(16, 0, 10, SpriteLoader.origin);
     public static Sprite flameItem = new Sprite(16, 1, 10, SpriteLoader.origin);
@@ -66,6 +67,9 @@ public class Sprite {
         balloom_right[2]= new Sprite(16, 10, 2, SpriteLoader.origin);
         balloom_dead = new Sprite(16, 9, 3, SpriteLoader.origin);
 
+        broken_brick[0] = new Sprite(16, 7, 1, SpriteLoader.origin);
+        broken_brick[1] = new Sprite(16, 7, 2, SpriteLoader.origin);
+        broken_brick[2] = new Sprite(16, 7, 3, SpriteLoader.origin);
     }
 
     private void load() {

@@ -1,5 +1,6 @@
 package Bomberman.level;
 
+import Bomberman.Entities.Box.Brick;
 import Bomberman.Entities.Box.Grass;
 import Bomberman.Entities.Box.Item.BombItem;
 import Bomberman.Entities.Box.Item.FlameItem;
@@ -72,16 +73,19 @@ public class Level {
                         gameContainer.addEntity(pos, new Grass(x, y));
                         break;
                     case 'b':
-                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new BombItem(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new BombItem(x, y), new Grass(x, y)));
                         break;
                     case 'f':
-                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new FlameItem(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new FlameItem(x, y), new Grass(x, y)));
                         break;
                     case 's':
-                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new SpeedItem(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new SpeedItem(x, y), new Grass(x, y)));
                         break;
                     case 'x':
-                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Portal(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new Portal(x, y), new Grass(x, y)));
+                        break;
+                    case '*':
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new Grass(x, y)));
                         break;
                     default:
                         gameContainer.addEntity(pos, new Grass(x, y));
