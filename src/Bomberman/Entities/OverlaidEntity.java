@@ -29,4 +29,8 @@ public class OverlaidEntity extends Entity {
         // Add check top of
         entities.getFirst().update();
     }
+    @Override
+    public boolean collide(Entity e) {
+        return entities.getFirst().collide(e);
+    }
 }

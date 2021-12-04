@@ -14,7 +14,16 @@ public class Sprite {
 
     public static Sprite[] balloom_left = new Sprite[3];
     public static Sprite[] balloom_right = new Sprite[3];
+
     public static Sprite[] bomb = new Sprite[3];
+    public static Sprite[] flame_vertical = new Sprite[3];
+    public static Sprite[] flame_horizontal = new Sprite[3];
+    public static Sprite[] flame_horizontal_left = new Sprite[3];
+    public static Sprite[] flame_horizontal_right = new Sprite[3];
+    public static Sprite[] flame_vertical_top = new Sprite[3];
+    public static Sprite[] flame_vertical_bot = new Sprite[3];
+    public static Sprite[] bomb_exploded = new Sprite[3];
+
     public static Sprite balloom_dead;
 
     public static Sprite grass = new Sprite(16, 6, 0, SpriteLoader.origin);
@@ -70,6 +79,34 @@ public class Sprite {
         broken_brick[0] = new Sprite(16, 7, 1, SpriteLoader.origin);
         broken_brick[1] = new Sprite(16, 7, 2, SpriteLoader.origin);
         broken_brick[2] = new Sprite(16, 7, 3, SpriteLoader.origin);
+
+        bomb_exploded[0] = new Sprite(16, 0, 4, SpriteLoader.origin);
+        bomb_exploded[1] = new Sprite(16, 0, 5, SpriteLoader.origin);
+        bomb_exploded[2] = new Sprite(16, 0, 6, SpriteLoader.origin);
+
+        flame_vertical[0] = new Sprite(16, 1, 5, SpriteLoader.origin);
+        flame_vertical[1] = new Sprite(16, 2, 5, SpriteLoader.origin);
+        flame_vertical[2] = new Sprite(16, 3, 5, SpriteLoader.origin);
+
+        flame_horizontal[0] = new Sprite(16, 1, 7, SpriteLoader.origin);
+        flame_horizontal[1] = new Sprite(16, 1, 8, SpriteLoader.origin);
+        flame_horizontal[2] = new Sprite(16, 1, 9, SpriteLoader.origin);
+
+        flame_horizontal_left[0] = new Sprite(16, 0, 7, SpriteLoader.origin);
+        flame_horizontal_left[1] = new Sprite(16, 0, 8, SpriteLoader.origin);
+        flame_horizontal_left[2] = new Sprite(16, 0, 9, SpriteLoader.origin);
+
+        flame_horizontal_right[0] = new Sprite(16, 2, 7, SpriteLoader.origin);
+        flame_horizontal_right[1] = new Sprite(16, 2, 8, SpriteLoader.origin);
+        flame_horizontal_right[2] = new Sprite(16, 2, 9, SpriteLoader.origin);
+
+        flame_vertical_top[0] = new Sprite(16, 1, 4, SpriteLoader.origin);
+        flame_vertical_top[1] = new Sprite(16, 2, 4, SpriteLoader.origin);
+        flame_vertical_top[2] = new Sprite(16, 3, 4, SpriteLoader.origin);
+
+        flame_vertical_bot[0] = new Sprite(16, 1, 6, SpriteLoader.origin);
+        flame_vertical_bot[1] = new Sprite(16, 2, 6, SpriteLoader.origin);
+        flame_vertical_bot[2] = new Sprite(16, 3, 6, SpriteLoader.origin);
     }
 
     private void load() {

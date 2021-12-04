@@ -1,6 +1,6 @@
 package Bomberman.Entities.Dynamic;
 
-import Bomberman.Entities.Bomb;
+import Bomberman.Entities.Bomb.Bomb;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
 import Bomberman.GameContainer;
@@ -8,6 +8,8 @@ import Bomberman.Keyboard.Keyboard;
 import Bomberman.graphics.Unit;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
+
+import java.util.Iterator;
 import java.util.List;
 
 public class Bomber extends DynamicEntity {
@@ -70,9 +72,9 @@ public class Bomber extends DynamicEntity {
     @Override
     public void update() {
         frame = (frame + 1) % 1000;
+        clearBombs();
         if (delayBombTime < -1000) delayBombTime = -1;
         else delayBombTime--;
-        checkCollidedBombs();
         move();
         plantBoom();
     }
@@ -91,13 +93,6 @@ public class Bomber extends DynamicEntity {
                 delayBombTime = 15;
                 gameContainer.addBomb(new Bomb(Unit.posToPixel(posX), Unit.posToPixel(posY)));
             }
-        }
-    }
-    protected void checkCollidedBombs(){
-        for(Bomb b: bombs) {
-            double diffX = b.getX() - x;
-            double diffY = b.getY() - y + sprite.SIZE;
-            b.setBlock(!(diffX >= -15 && diffX <= 10 && diffY <= 15 && diffY >= -11));
         }
     }
     @Override
@@ -133,11 +128,24 @@ public class Bomber extends DynamicEntity {
             int posX = (int) ((x + d % 2 * 11) * 1.0 / Game.BOX_SIZE * 1.0);
             int posY = (int) ((y + d / 2 * 12 - 13) * 1.0 / Game.BOX_SIZE * 1.0);
             Entity e = gameContainer.getEntity(posX, posY);
-            if (e.getBlock()) return false;
+            if (!e.collide(this)) return false;
         }
         return true;
     }
-
+    private void clearBombs() {
+        Iterator<Bomb> bombList = bombs.iterator();
+        Bomb b;
+        while(bombList.hasNext()) {
+            b = bombList.next();
+            if(b.isRemoved())  {
+                bombList.remove();
+            }
+        }
+    }
+    @Override
+    public boolean collide(Entity e) {
+        return false;
+    }
     private void loadSprite() {
         int _frame = (frame / 10) % 3;
         switch (direction) {

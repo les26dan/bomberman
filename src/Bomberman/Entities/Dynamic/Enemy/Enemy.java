@@ -1,5 +1,6 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
+import Bomberman.Entities.Bomb.Bomb;
 import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
@@ -80,6 +81,10 @@ public abstract class Enemy extends DynamicEntity {
             yy += 8;
         }
         Entity e = gameContainer.getEntity(Unit.pixelToPos(xx) + (int) addX, Unit.pixelToPos(yy) + (int) addY);
-        return !e.getBlock();
+        return e.collide(this);
+    }
+    @Override
+    public boolean collide(Entity e) {
+        return false;
     }
 }

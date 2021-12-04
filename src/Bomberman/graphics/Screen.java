@@ -1,4 +1,5 @@
 package Bomberman.graphics;
+import Bomberman.Entities.Bomb.Flame;
 import Bomberman.Entities.Entity;
 
 public class Screen {

@@ -8,27 +8,22 @@ public abstract class Entity {
     protected double x;
     protected double y;
     protected Sprite sprite;
+    protected boolean remove = false;
     protected GameContainer gameContainer;
-    protected boolean block;
 
     public Entity(double x, double y) {
         this.x = x;
         this.y = y;
-        block = false;
     }
     public Entity getEntity() {
         return this;
     }
     public abstract void render(Screen screen);
     public abstract void update();
-
     public Sprite getSprite() {
         return sprite;
     }
 
-    public void setBlock(boolean block) {
-        this.block = block;
-    }
     public double getX() {
         return x;
     }
@@ -36,8 +31,9 @@ public abstract class Entity {
     public double getY() {
         return y;
     }
+    public abstract boolean collide(Entity e);
 
-    public boolean getBlock() {
-        return block;
+    public boolean isRemoved() {
+        return remove;
     }
 }
