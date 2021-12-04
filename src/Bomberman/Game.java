@@ -62,6 +62,7 @@ public class Game extends Canvas {
         long timer = System.currentTimeMillis();
         double cnt = 0;
         int frames = 0;
+        requestFocus();
         while (running) {
             long cur = System.nanoTime();
             cnt += (cur - lastTime) / (1000000000.0 / rate);

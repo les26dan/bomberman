@@ -1,8 +1,6 @@
 package Bomberman;
 
-import Bomberman.Entities.Bomb;
-import Bomberman.Entities.Box.Wall;
-import Bomberman.Entities.Dynamic.Bomber;
+import Bomberman.Entities.Bomb.Bomb;
 import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
 import Bomberman.Keyboard.Keyboard;
@@ -11,7 +9,6 @@ import Bomberman.graphics.Unit;
 import Bomberman.level.Level;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class GameContainer {
     public Entity[] entities;
     public List<DynamicEntity> dynamicEntities = new ArrayList<>();
     public List<Bomb> bombs = new ArrayList<>();
-    protected boolean plantedBomb[];
+    protected boolean[] plantedBomb;
 
     public GameContainer(Game game, Keyboard input, Screen screen) {
         this.game = game;
@@ -38,8 +35,8 @@ public class GameContainer {
 
     public void render(Screen screen) {
         renderEntities(screen);
-        renderBombs(screen);
         renderDynamicEntity(screen);
+        renderBombs(screen);
     }
 
     protected void renderDynamicEntity(Screen screen) {
@@ -63,7 +60,6 @@ public class GameContainer {
             level.createEntities();
         }
         catch (IOException e) {
-            System.out.println("");
         }
     }
 
@@ -113,7 +109,7 @@ public class GameContainer {
                     return b;
             }
         }
-        return getEntityAt((int)posX, (int)posY);
+        return getEntityAt(posX, posY);
     }
     public Entity getEntityAt(int posX , int posY) {
         return entities[posX + posY * level.getWidth()].getEntity();
