@@ -8,6 +8,4 @@ public abstract class Item extends Box {
         super(x, y);
     }
 
-
-
 }
