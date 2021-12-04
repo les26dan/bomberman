@@ -1,6 +1,7 @@
 package Bomberman.Entities.Box;
 
 
+import Bomberman.Entities.Entity;
 import Bomberman.graphics.Sprite;
 
 public class Grass extends Box {
@@ -9,5 +10,7 @@ public class Grass extends Box {
         super(x, y);
         sprite = Sprite.grass;
     }
-
+    public boolean collide(Entity e) {
+        return true;
+    }
 }
