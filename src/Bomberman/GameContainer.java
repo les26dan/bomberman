@@ -67,7 +67,7 @@ public class GameContainer {
         }
     }
 
-    public void addEntitie(int pos, Entity entity) {
+    public void addEntity(int pos, Entity entity) {
         entities[pos] = entity;
     }
     public void addDynamicEntity(DynamicEntity d) {
@@ -116,6 +116,6 @@ public class GameContainer {
         return getEntityAt((int)posX, (int)posY);
     }
     public Entity getEntityAt(int posX , int posY) {
-        return entities[posX + posY * level.getWidth()];
+        return entities[posX + posY * level.getWidth()].getEntity();
     }
 }

@@ -16,6 +16,10 @@ public class OverlaidEntity extends Entity {
     }
 
     @Override
+    public Entity getEntity() {
+        return entities.getFirst().getEntity();
+    }
+    @Override
     public void render(Screen screen) {
         entities.getFirst().render(screen);
     }

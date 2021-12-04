@@ -16,6 +16,9 @@ public abstract class Entity {
         this.y = y;
         block = false;
     }
+    public Entity getEntity() {
+        return this;
+    }
     public abstract void render(Screen screen);
     public abstract void update();
 

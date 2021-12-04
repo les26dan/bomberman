@@ -61,30 +61,30 @@ public class Level {
 
                 switch (c) {
                     case '#':
-                        gameContainer.addEntitie(pos, new Wall(x, y));
+                        gameContainer.addEntity(pos, new Wall(x, y));
                         break;
                     case '1':
-                        gameContainer.addEntitie(pos, new Grass(x, y));
+                        gameContainer.addEntity(pos, new Grass(x, y));
                         gameContainer.addDynamicEntity(new Balloon(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
                         break;
                     case 'p':
                         gameContainer.addDynamicEntity(new Bomber(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
-                        gameContainer.addEntitie(pos, new Grass(x, y));
+                        gameContainer.addEntity(pos, new Grass(x, y));
                         break;
                     case 'b':
-                        gameContainer.addEntitie(pos, new OverlaidEntity(x, y, new BombItem(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new BombItem(x, y), new Grass(x, y)));
                         break;
                     case 'f':
-                        gameContainer.addEntitie(pos, new OverlaidEntity(x, y, new FlameItem(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new FlameItem(x, y), new Grass(x, y)));
                         break;
                     case 's':
-                        gameContainer.addEntitie(pos, new OverlaidEntity(x, y, new SpeedItem(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new SpeedItem(x, y), new Grass(x, y)));
                         break;
                     case 'x':
-                        gameContainer.addEntitie(pos, new OverlaidEntity(x, y, new Portal(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Portal(x, y), new Grass(x, y)));
                         break;
                     default:
-                        gameContainer.addEntitie(pos, new Grass(x, y));
+                        gameContainer.addEntity(pos, new Grass(x, y));
                         break;
                 }
             }
