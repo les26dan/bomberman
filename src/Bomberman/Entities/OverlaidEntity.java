@@ -14,7 +14,6 @@ public class OverlaidEntity extends Entity {
             this.entities.addLast(entity);
         }
     }
-
     @Override
     public Entity getEntity() {
         return entities.getFirst().getEntity();
@@ -26,6 +25,10 @@ public class OverlaidEntity extends Entity {
 
     @Override
     public void update() {
+        Entity e  = entities.getFirst();
+        if(e.isRemoved())  {
+            entities.removeFirst();
+        }
         // Add check top of
         entities.getFirst().update();
     }

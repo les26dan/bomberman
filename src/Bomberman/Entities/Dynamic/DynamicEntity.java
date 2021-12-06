@@ -7,6 +7,7 @@ public abstract class DynamicEntity extends Entity {
     protected int direction ;
     protected boolean moving;
     protected int frame;
+    protected boolean dead;
     public DynamicEntity(double x, double y, int speed, int direction) {
         super(x, y);
         this.direction = 1;
@@ -18,4 +19,5 @@ public abstract class DynamicEntity extends Entity {
     }
     protected abstract boolean canMove(double x, double y);
     protected abstract void move();
+    protected abstract void dead();
 }
