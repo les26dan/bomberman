@@ -1,6 +1,7 @@
 package Bomberman;
 
 import Bomberman.Entities.Bomb.Bomb;
+import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
 import Bomberman.Keyboard.Keyboard;
@@ -73,13 +74,14 @@ public class GameContainer {
         bombs.add(b);
         plantedBomb[Unit.pixelToPos(b.getX()) + Unit.pixelToPos(b.getY()) * level.getWidth()] = true;
     }
-    public boolean checkBomb(int posX, int posY) {
-        return !plantedBomb[posX + posY * level.getWidth()];
-    }
     void update() {
         updateEntities();
         updateDynamic();
         updateBombs();
+        for (int i = 0; i < dynamicEntities.size(); i++) {
+            DynamicEntity a = dynamicEntities.get(i);
+            if(a.isRemoved()) dynamicEntities.remove(i);
+        }
     }
     void updateEntities() {
         for(Entity e: entities){

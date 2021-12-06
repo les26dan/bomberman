@@ -3,15 +3,19 @@ package Bomberman.Entities.Dynamic.Enemy;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Sprite;
 
+import java.awt.*;
+
 public class Balloon extends Enemy {
 
     public Balloon(int x, int y, int speed, int direction, int value) {
         super(x, y, speed, direction, value);
     }
+
     public Balloon(int x, int y, GameContainer gameContainer) {
         super(x, y);
         this.gameContainer = gameContainer;
     }
+
     @Override
     protected void loadSprite() {
         switch (direction) {
@@ -23,4 +27,5 @@ public class Balloon extends Enemy {
                 break;
         }
     }
+
 }

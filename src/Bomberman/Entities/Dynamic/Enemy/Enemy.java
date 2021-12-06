@@ -36,6 +36,12 @@ public abstract class Enemy extends DynamicEntity {
     }
 
     @Override
+    protected void dead() {
+        if (dead) return;
+        dead = false;
+    }
+
+    @Override
     protected void move() {
         double u = x;
         double v = y;
@@ -52,7 +58,7 @@ public abstract class Enemy extends DynamicEntity {
         if (direction == 1)
             u += 1 * speed;
         moving = u != x || v != y;
-        if (canMove( (u - x) * 2, (v - y) * 2)) {
+        if (canMove((u - x) * 2, (v - y) * 2)) {
             steps -= 1;
             x = u;
             y = v;
@@ -83,6 +89,7 @@ public abstract class Enemy extends DynamicEntity {
         Entity e = gameContainer.getEntity(Unit.pixelToPos(xx) + (int) addX, Unit.pixelToPos(yy) + (int) addY);
         return e.collide(this);
     }
+
     @Override
     public boolean collide(Entity e) {
         return false;
