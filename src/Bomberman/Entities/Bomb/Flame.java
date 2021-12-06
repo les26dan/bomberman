@@ -5,12 +5,13 @@ import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
 
 public class Flame extends Entity {
-    protected boolean last = false;
+    protected boolean last;
     protected int direction;
 
-    public Flame(double x, double y, int direction){
+    public Flame(double x, double y, int direction,boolean last){
         super(x,y);
         this.direction = direction;
+        this.last = last;
     }
     @Override
     public void render(Screen screen) {

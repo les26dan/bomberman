@@ -89,9 +89,10 @@ public class Bomber extends DynamicEntity {
         if (input.space && delayBombTime < 0) {
             int posX = Unit.pixelToPos(x + sprite.getSize() / 2.0);
             int posY = Unit.pixelToPos(y + sprite.getSize() / 2.0 - sprite.SIZE);
-            if (gameContainer.checkBomb(posX, posY)) {
+            Entity e = gameContainer.getEntity(posX, posY);
+            if(!(e instanceof Bomb)) {
                 delayBombTime = 15;
-                gameContainer.addBomb(new Bomb(Unit.posToPixel(posX), Unit.posToPixel(posY)));
+                gameContainer.addBomb(new Bomb(Unit.posToPixel(posX), Unit.posToPixel(posY),gameContainer));
             }
         }
     }
@@ -123,6 +124,11 @@ public class Bomber extends DynamicEntity {
     }
 
     @Override
+    protected void dead() {
+
+    }
+
+    @Override
     protected boolean canMove(double x, double y) {
         for (int d = 0; d < 4; d++) {
             int posX = (int) ((x + d % 2 * 11) * 1.0 / Game.BOX_SIZE * 1.0);
@@ -132,20 +138,23 @@ public class Bomber extends DynamicEntity {
         }
         return true;
     }
+
     private void clearBombs() {
         Iterator<Bomb> bombList = bombs.iterator();
         Bomb b;
-        while(bombList.hasNext()) {
+        while (bombList.hasNext()) {
             b = bombList.next();
-            if(b.isRemoved())  {
+            if (b.isRemoved()) {
                 bombList.remove();
             }
         }
     }
+
     @Override
     public boolean collide(Entity e) {
         return false;
     }
+
     private void loadSprite() {
         int _frame = (frame / 10) % 3;
         switch (direction) {
