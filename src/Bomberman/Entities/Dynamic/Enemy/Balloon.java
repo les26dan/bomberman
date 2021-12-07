@@ -1,29 +1,34 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
+import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Sprite;
 
-import java.awt.*;
 
 public class Balloon extends Enemy {
 
-    public Balloon(int x, int y, int speed, int direction, int value) {
-        super(x, y, speed, direction, value);
-    }
-
     public Balloon(int x, int y, GameContainer gameContainer) {
-        super(x, y);
+        super(x, y,Sprite.balloom_dead);
         this.gameContainer = gameContainer;
+        this.speed = 0.5;
+        this.steps = Game.BOX_SIZE * 1.0 / speed;
     }
 
     @Override
     protected void loadSprite() {
+        int _frame = (frame / 15) % 3;
         switch (direction) {
+            case 0:
+                sprite = Sprite.balloom_right[_frame];
+                break;
             case 1:
-                sprite = Sprite.balloom_right[0];
+                sprite = Sprite.balloom_right[_frame];
+                break;
+            case 2:
+                sprite = Sprite.balloom_left[_frame];
                 break;
             case 3:
-                sprite = Sprite.balloom_left[0];
+                sprite = Sprite.balloom_left[_frame];
                 break;
         }
     }

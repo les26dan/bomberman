@@ -4,41 +4,44 @@ import Bomberman.Entities.Bomb.Bomb;
 import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
+import Bomberman.graphics.Sprite;
 import Bomberman.graphics.Unit;
 import Bomberman.graphics.Screen;
 
 public abstract class Enemy extends DynamicEntity {
     protected int value;
     protected double steps;
+    protected int deadTime = 30;
+    protected Sprite deadSprite;
 
-    public Enemy(double x, double y) {
+    public Enemy(double x, double y,Sprite deadSprite) {
         super(x, y);
-        this.speed = 0.5;
-        this.steps = Game.BOX_SIZE * 1.0 / speed;
-    }
-
-    public Enemy(double x, double y, int speed, int direction, int value) {
-        super(x, y, speed, direction);
-        this.value = value;
+        this.deadSprite = deadSprite;
     }
 
     protected abstract void loadSprite();
 
     @Override
     public void update() {
+        frame = (frame + 1)% 1000;
         move();
+        if(dead) {
+            if(deadTime > 0)
+                deadTime--;
+            else
+                remove = true;
+        }
     }
 
     @Override
     public void render(Screen screen) {
-        loadSprite();
-        screen.renderEntity((int) x, (int) y - sprite.SIZE, this);
-    }
-
-    @Override
-    protected void dead() {
-        if (dead) return;
-        dead = false;
+        if (dead) {
+            sprite = deadSprite;
+            screen.renderEntity((int) x, (int) y - sprite.SIZE, this);
+        } else {
+            loadSprite();
+            screen.renderEntity((int) x, (int) y - sprite.SIZE, this);
+        }
     }
 
     @Override
@@ -86,12 +89,16 @@ public abstract class Enemy extends DynamicEntity {
             xx += 15;
             yy += 8;
         }
-        Entity e = gameContainer.getEntity(Unit.pixelToPos(xx) + (int) addX, Unit.pixelToPos(yy) + (int) addY);
+        Entity e = gameContainer.getEntity(Unit.pixelToPos(xx) + (int) addX, Unit.pixelToPos(yy) + (int) addY,this);
         return e.collide(this);
     }
 
     @Override
     public boolean collide(Entity e) {
-        return false;
+        if (e instanceof Bomb) {
+            dead = true;
+            return true;
+        }
+        return true;
     }
 }

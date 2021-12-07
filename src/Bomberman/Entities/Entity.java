@@ -3,6 +3,7 @@ package Bomberman.Entities;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
+import Bomberman.graphics.Unit;
 
 public abstract class Entity {
     protected double x;
@@ -35,5 +36,11 @@ public abstract class Entity {
 
     public boolean isRemoved() {
         return remove;
+    }
+    public int posX(){
+        return Unit.pixelToPos(x + 8);
+    }
+    public int posY(){
+        return Unit.pixelToPos(y - 8);
     }
 }

@@ -1,6 +1,7 @@
 package Bomberman.Entities.Bomb;
 
 import Bomberman.Entities.Dynamic.Bomber;
+import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
 import Bomberman.GameContainer;
@@ -81,7 +82,7 @@ public class Bomb extends Entity {
             if (direction == 1) posX++;
             if (direction == 2) posY++;
             if (direction == 3) posX--;
-            Entity e = gameContainer.getEntity(posX, posY);
+            Entity e = gameContainer.getEntity(posX, posY,null);
             if (!e.collide(this)) {
                 flameMaxSize = i - 1;
                 break;
@@ -100,7 +101,7 @@ public class Bomb extends Entity {
     }
 
     private void loadSprite() {
-        int _frame = (frame / 15) % 3;
+        int _frame = (frame / 10) % 3;
         sprite = Sprite.bomb[_frame];
     }
 
