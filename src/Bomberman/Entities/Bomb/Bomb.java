@@ -16,7 +16,7 @@ public class Bomb extends Entity {
     protected int timeToExplode = 120;
     protected int explodeTime = 20;
     protected int flameSize = 2;
-    protected boolean exploded;
+    protected boolean exploded = false;
     private int frame;
     protected List<Flame> flameList;
 
@@ -64,6 +64,9 @@ public class Bomb extends Entity {
     }
 
     public void explore() {
+        if(exploded) return;
+        System.out.println("bôm" + x + " " + y);
+        exploded = true;
         flameList = new ArrayList<>();
         addFlames(0);
         addFlames(1);
@@ -111,6 +114,10 @@ public class Bomb extends Entity {
             double diffX = x - e.getX();
             double diffY = y - e.getY() + sprite.SIZE;
             return (diffX >= -15 && diffX <= 10 && diffY <= 15 && diffY >= -11);
+        }
+        if(e instanceof Bomb) {
+            explore();
+            return true;
         }
         return false;
     }

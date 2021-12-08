@@ -7,7 +7,6 @@ import Bomberman.graphics.Sprite;
 import Bomberman.graphics.Unit;
 
 public class Brick extends Box {
-    protected int frame;
     protected int brokenTime = 30;
     protected boolean broken = false;
     protected Entity belowEntity;
@@ -17,7 +16,6 @@ public class Brick extends Box {
     @Override
     public void update() {
         if(broken) {
-            frame = (frame + 1) % 1000;
             if(brokenTime > 0)
                 brokenTime--;
             else
@@ -27,9 +25,9 @@ public class Brick extends Box {
     @Override
     public void render(Screen screen) {
         if(broken) {
-            if(frame >= 0) sprite = Sprite.broken_brick[0];
-            if(frame >= 10) sprite = Sprite.broken_brick[1];
-            if(frame >= 20) sprite = Sprite.broken_brick[2];
+            sprite = Sprite.broken_brick[0];
+            if(brokenTime <= 20) sprite = Sprite.broken_brick[1];
+            if(brokenTime <= 10) sprite = Sprite.broken_brick[2];
             screen.renderEntity(Unit.posToPixel(x), Unit.posToPixel(y), belowEntity);
         }
         else {

@@ -11,7 +11,6 @@ import Bomberman.level.Level;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class GameContainer {
@@ -37,8 +36,8 @@ public class GameContainer {
 
     public void render(Screen screen) {
         renderEntities(screen);
-        renderDynamicEntity(screen);
         renderBombs(screen);
+        renderDynamicEntity(screen);
     }
 
     protected void renderDynamicEntity(Screen screen) {
@@ -117,7 +116,7 @@ public class GameContainer {
     }
 
     public Entity getEntity(int posX, int posY, DynamicEntity except) {
-            if (plantedBomb[posX + posY * level.getWidth()]) {
+        if (plantedBomb[posX + posY * level.getWidth()]) {
                 for (Bomb b : bombs) {
                     if (Unit.pixelToPos(b.getX()) == posX && Unit.pixelToPos(b.getY()) == posY)
                         return b;

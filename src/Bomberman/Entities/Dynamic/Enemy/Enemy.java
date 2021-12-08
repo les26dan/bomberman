@@ -11,10 +11,9 @@ import Bomberman.graphics.Screen;
 public abstract class Enemy extends DynamicEntity {
     protected int value;
     protected double steps;
-    protected int deadTime = 30;
     protected Sprite deadSprite;
 
-    public Enemy(double x, double y,Sprite deadSprite) {
+    public Enemy(double x, double y, Sprite deadSprite) {
         super(x, y);
         this.deadSprite = deadSprite;
     }
@@ -23,13 +22,14 @@ public abstract class Enemy extends DynamicEntity {
 
     @Override
     public void update() {
-        frame = (frame + 1)% 1000;
-        move();
-        if(dead) {
-            if(deadTime > 0)
+        frame = (frame + 1) % 1000;
+        if (dead) {
+            if (deadTime > 0)
                 deadTime--;
             else
                 remove = true;
+        } else {
+            move();
         }
     }
 
@@ -37,11 +37,13 @@ public abstract class Enemy extends DynamicEntity {
     public void render(Screen screen) {
         if (dead) {
             sprite = deadSprite;
-            screen.renderEntity((int) x, (int) y - sprite.SIZE, this);
+            if(deadTime <= 21) sprite = Sprite.mob_dead[0];
+            if(deadTime <= 14) sprite = Sprite.mob_dead[1];
+            if(deadTime <= 7) sprite = Sprite.mob_dead[2];
         } else {
             loadSprite();
-            screen.renderEntity((int) x, (int) y - sprite.SIZE, this);
         }
+        screen.renderEntity((int) x, (int) y - sprite.SIZE, this);
     }
 
     @Override
@@ -89,7 +91,7 @@ public abstract class Enemy extends DynamicEntity {
             xx += 15;
             yy += 8;
         }
-        Entity e = gameContainer.getEntity(Unit.pixelToPos(xx) + (int) addX, Unit.pixelToPos(yy) + (int) addY,this);
+        Entity e = gameContainer.getEntity(Unit.pixelToPos(xx) + (int) addX, Unit.pixelToPos(yy) + (int) addY, this);
         return e.collide(this);
     }
 
