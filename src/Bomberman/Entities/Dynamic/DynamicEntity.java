@@ -9,10 +9,6 @@ public abstract class DynamicEntity extends Entity {
     protected int frame;
     protected int deadTime = 28;
     protected boolean dead = false;
-    public DynamicEntity(double x, double y, int speed, int direction) {
-        super(x, y);
-        this.direction = 1;
-    }
 
     public DynamicEntity(double x, double y) {
         super(x, y);

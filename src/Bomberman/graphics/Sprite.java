@@ -48,9 +48,9 @@ public class Sprite {
     public static Sprite portal = new Sprite(16, 4, 0, SpriteLoader.origin);
     public static Sprite[] broken_brick = new Sprite[3];
 
-    public static Sprite speedItem = new Sprite(16, 0, 10, SpriteLoader.origin);
+    public static Sprite speedItem = new Sprite(16, 2, 10, SpriteLoader.origin);
     public static Sprite flameItem = new Sprite(16, 1, 10, SpriteLoader.origin);
-    public static Sprite bombItem = new Sprite(16, 2, 10, SpriteLoader.origin);
+    public static Sprite bombItem = new Sprite(16, 0, 10, SpriteLoader.origin);
 
 
     public Sprite(int size, int x, int y, SpriteLoader sheet) {

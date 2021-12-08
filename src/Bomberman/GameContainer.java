@@ -131,7 +131,6 @@ public class GameContainer {
             return entities[posX + posY * level.getWidth()].getEntity();
     }
 
-
     public Bomber getBomber() {
         for (DynamicEntity dynamicEntity : dynamicEntities) {
             if (dynamicEntity instanceof Bomber) {

@@ -15,7 +15,9 @@ import java.util.List;
 
 public class Bomber extends DynamicEntity {
     protected int hearts;
-    protected int numBomb;
+    protected int numBomb = 2;
+    protected int numPlantedBomb = 0;
+    protected int flameSize = 1;
     protected int score;
     protected Keyboard input;
     protected int delayBombTime;
@@ -25,40 +27,9 @@ public class Bomber extends DynamicEntity {
         super(x, y);
         this.gameContainer = gameContainer;
         this.delayBombTime = 0;
-        input = gameContainer.getInput();
-        bombs = gameContainer.getBombs();
-    }
-
-    public int getHearts() {
-        return hearts;
-    }
-
-    public void setHearts(int hearts) {
-        this.hearts = hearts;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int getNumBomb() {
-        return numBomb;
-    }
-
-    public void setNumBomb(int numBomb) {
-        this.numBomb = numBomb;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
+        this.input = gameContainer.getInput();
+        this.bombs = gameContainer.getBombs();
+        this.speed = 1;
     }
 
     @Override
@@ -91,13 +62,14 @@ public class Bomber extends DynamicEntity {
     }
 
     protected void plantBoom() {
-        if (input.space && delayBombTime < 0) {
+        if (input.space && numPlantedBomb < numBomb && delayBombTime < 0) {
             int posX = Unit.pixelToPos(x + sprite.getSize() / 2.0);
             int posY = Unit.pixelToPos(y + sprite.getSize() / 2.0 - sprite.SIZE);
             Entity e = gameContainer.getEntity(posX, posY, this);
             if (!(e instanceof Bomb)) {
                 delayBombTime = 15;
-                gameContainer.addBomb(new Bomb(Unit.posToPixel(posX), Unit.posToPixel(posY), gameContainer));
+                gameContainer.addBomb(new Bomb(Unit.posToPixel(posX), Unit.posToPixel(posY),flameSize, gameContainer));
+                numPlantedBomb++;
             }
         }
     }
@@ -108,19 +80,19 @@ public class Bomber extends DynamicEntity {
         double v = y;
         if (input.up) {
             direction = 0;
-            v -= 1;
+            v -= 1 * speed;
         }
         if (input.down) {
             direction = 2;
-            v += 1;
+            v += 1 * speed;
         }
         if (input.left) {
             direction = 3;
-            u -= 1;
+            u -= 1 * speed;
         }
         if (input.right) {
             direction = 1;
-            u += 1;
+            u += 1 * speed;
         }
         moving = u != x || v != y;
         if (canMove(u, v)) {
@@ -146,6 +118,7 @@ public class Bomber extends DynamicEntity {
         while (bombList.hasNext()) {
             b = bombList.next();
             if (b.isRemoved()) {
+                numPlantedBomb--;
                 bombList.remove();
             }
         }
@@ -200,5 +173,14 @@ public class Bomber extends DynamicEntity {
                 }
                 break;
         }
+    }
+    public void addBombItem() {
+        numBomb = Math.min(5,numBomb + 1);
+    }
+    public void addFlameItem() {
+        flameSize = Math.min(5,flameSize + 1);
+    }
+    public void addSpeedItem() {
+        speed = Math.min(speed + 0.1 , 2.0);
     }
 }
