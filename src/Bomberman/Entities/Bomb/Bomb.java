@@ -106,15 +106,20 @@ public class Bomb extends Entity {
             if (direction == 1) posX++;
             if (direction == 2) posY++;
             if (direction == 3) posX--;
-            if (i == flameMaxSize)
+
+            if (i == flameMaxSize && gameContainer.getExistedFlame(posX,posY) == 0)
                 flameList.add(new Flame(Unit.posToPixel(posX), Unit.posToPixel(posY), direction, true));
             else flameList.add(new Flame(Unit.posToPixel(posX), Unit.posToPixel(posY), direction, false));
+            gameContainer.setExistedFlame(posX,posY ,1);
         }
     }
-
     private void loadSprite() {
         int _frame = (frame / 10) % 3;
         sprite = Sprite.bomb[_frame];
+    }
+
+    public List<Flame> getFlameList() {
+        return flameList;
     }
 
     @Override
@@ -122,7 +127,7 @@ public class Bomb extends Entity {
         if (e instanceof Bomber) {
             double diffX = x - e.getX();
             double diffY = y - e.getY() + sprite.SIZE;
-            return (diffX >= -15 && diffX <= 10 && diffY <= 15 && diffY >= -11);
+            return (diffX >= -15 && diffX <= 10 && diffY <= 14 && diffY >= -12);
         }
         if (e instanceof Bomb) {
             timeToExplode = 0;

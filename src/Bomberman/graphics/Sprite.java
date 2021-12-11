@@ -45,7 +45,7 @@ public class Sprite {
     public static Sprite grass = new Sprite(16, 6, 0, SpriteLoader.origin);
     public static Sprite brick = new Sprite(16, 7, 0, SpriteLoader.origin);
     public static Sprite wall = new Sprite(16, 5, 0, SpriteLoader.origin);
-    public static Sprite portal = new Sprite(16, 4, 0, SpriteLoader.origin);
+    public static Sprite portal = new Sprite(16, 8, 0, SpriteLoader.origin);
     public static Sprite[] broken_brick = new Sprite[3];
 
     public static Sprite speedItem = new Sprite(16, 2, 10, SpriteLoader.origin);

@@ -25,7 +25,7 @@ public class Screen {
             int yy = v + y;
             for (int u = 0; u < entity.getSprite().getSize(); u++) {
                 int xx = u + x;
-                if (yy < 0 || yy >= HEIGHT  || xx >= WIDTH)
+                if (yy < 0 || yy >= HEIGHT  || xx >= WIDTH || xx < -entity.getSprite().getSize())
                     break;
                 if (xx < 0) xx = 0;
                 int color = entity.getSprite().getPixel(u + v * entity.getSprite().getSize());

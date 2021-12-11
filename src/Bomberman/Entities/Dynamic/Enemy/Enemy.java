@@ -15,6 +15,7 @@ public abstract class Enemy extends DynamicEntity {
 
     public Enemy(double x, double y, Sprite deadSprite) {
         super(x, y);
+        this.deadTime = 60;
         this.deadSprite = deadSprite;
     }
 
@@ -37,9 +38,9 @@ public abstract class Enemy extends DynamicEntity {
     public void render(Screen screen) {
         if (dead) {
             sprite = deadSprite;
-            if(deadTime <= 21) sprite = Sprite.mob_dead[0];
-            if(deadTime <= 14) sprite = Sprite.mob_dead[1];
-            if(deadTime <= 7) sprite = Sprite.mob_dead[2];
+            if(deadTime <= 30) sprite = Sprite.mob_dead[0];
+            if(deadTime <= 20) sprite = Sprite.mob_dead[1];
+            if(deadTime <= 10) sprite = Sprite.mob_dead[2];
         } else {
             loadSprite();
         }

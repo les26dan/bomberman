@@ -1,6 +1,7 @@
 package Bomberman.Entities.Bomb;
 
 import Bomberman.Entities.Entity;
+import Bomberman.GameContainer;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
 
@@ -9,7 +10,7 @@ public class Flame extends Entity {
     protected int direction;
     protected int frame = 0;
 
-    public Flame(double x, double y, int direction,boolean last){
+    public Flame(double x, double y, int direction, boolean last){
         super(x,y);
         this.direction = direction;
         this.last = last;

@@ -3,6 +3,7 @@ package Bomberman;
 import Bomberman.Entities.Bomb.Bomb;
 import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Dynamic.DynamicEntity;
+import Bomberman.Entities.Dynamic.Enemy.Enemy;
 import Bomberman.Entities.Entity;
 import Bomberman.Keyboard.Keyboard;
 import Bomberman.graphics.Screen;
@@ -23,6 +24,7 @@ public class GameContainer {
     public List<DynamicEntity> dynamicEntities = new ArrayList<>();
     public List<Bomb> bombs = new ArrayList<>();
     protected boolean[] plantedBomb;
+    protected int[] existedFlame;
 
     public GameContainer(Game game, Keyboard input, Screen screen) {
         this.game = game;
@@ -58,9 +60,10 @@ public class GameContainer {
 
     public void changeLevel(int num) {
         try {
-            level = new Level("levels/Level" + num + ".txt", this);
+            level = new Level("levels/Level" + 1 + ".txt", this);
             entities = new Entity[level.getHeight() * level.getWidth()];
             plantedBomb = new boolean[level.getHeight() * level.getWidth()];
+            existedFlame = new int[level.getHeight() * level.getWidth()];
             level.createEntities();
         } catch (IOException e) {
         }
@@ -78,7 +81,12 @@ public class GameContainer {
         bombs.add(b);
         plantedBomb[Unit.pixelToPos(b.getX()) + Unit.pixelToPos(b.getY()) * level.getWidth()] = true;
     }
-
+    public void setExistedFlame(int posX,int posY,int add) {
+        existedFlame[posX + posY * level.getWidth()] += add;
+    }
+    public int getExistedFlame(int posX,int posY) {
+        return existedFlame[posX + posY * level.getWidth()];
+    }
     void update() {
         updateEntities();
         updateDynamic();
@@ -138,6 +146,14 @@ public class GameContainer {
             }
         }
         return null;
+    }
+    public boolean allEnemiesDead() {
+        int res = 0;
+        for (DynamicEntity dynamicEntity: dynamicEntities) {
+            if(dynamicEntity instanceof Enemy)
+                ++res;
+        }
+        return (res == 0);
     }
 
 }

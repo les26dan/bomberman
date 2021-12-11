@@ -1,6 +1,7 @@
 package Bomberman.Entities.Dynamic;
 
 import Bomberman.Entities.Bomb.Bomb;
+import Bomberman.Entities.Bomb.Flame;
 import Bomberman.Entities.Dynamic.Enemy.Enemy;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
@@ -17,7 +18,7 @@ public class Bomber extends DynamicEntity {
     protected int hearts;
     protected int numBomb = 2;
     protected int numPlantedBomb = 0;
-    protected int flameSize = 1;
+    protected int flameSize = 3;
     protected int score;
     protected Keyboard input;
     protected int delayBombTime;
@@ -119,6 +120,10 @@ public class Bomber extends DynamicEntity {
             b = bombList.next();
             if (b.isRemoved()) {
                 numPlantedBomb--;
+                for(Flame flame: b.getFlameList()) {
+                    if(flame.posX() == b.posX() && flame.posY() == b.posY()) continue;
+                    gameContainer.setExistedFlame(flame.posX(),flame.posY() + 1,-1);
+                }
                 bombList.remove();
             }
         }
@@ -127,7 +132,7 @@ public class Bomber extends DynamicEntity {
     @Override
     public boolean collide(Entity e) {
         if(e instanceof Bomb) {
-            dead = true;
+//            dead = true;
             return true;
         }
 

@@ -8,7 +8,7 @@ import Bomberman.Entities.Box.Item.SpeedItem;
 import Bomberman.Entities.Box.Portal;
 import Bomberman.Entities.Box.Wall;
 import Bomberman.Entities.Dynamic.Bomber;
-import Bomberman.Entities.Dynamic.Enemy.Balloon;
+import Bomberman.Entities.Dynamic.Enemy.*;
 import Bomberman.Entities.OverlaidEntity;
 import Bomberman.Game;
 import Bomberman.GameContainer;
@@ -68,6 +68,22 @@ public class Level {
                         gameContainer.addEntity(pos, new Grass(x, y));
                         gameContainer.addDynamicEntity(new Balloon(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
                         break;
+                    case '2':
+                        gameContainer.addEntity(pos, new Grass(x, y));
+                        gameContainer.addDynamicEntity(new Oneal(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        break;
+                    case '3':
+                        gameContainer.addEntity(pos, new Grass(x, y));
+                        gameContainer.addDynamicEntity(new Doll(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        break;
+                    case '4':
+                        gameContainer.addEntity(pos, new Grass(x, y));
+                        gameContainer.addDynamicEntity(new Minvo(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        break;
+                    case '5':
+                        gameContainer.addEntity(pos, new Grass(x, y));
+                        gameContainer.addDynamicEntity(new Kondoria(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        break;
                     case 'p':
                         gameContainer.addDynamicEntity(new Bomber(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
                         gameContainer.addEntity(pos, new Grass(x, y));
@@ -82,7 +98,7 @@ public class Level {
                         gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new SpeedItem(x, y), new Grass(x, y)));
                         break;
                     case 'x':
-                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new Portal(x, y), new Grass(x, y)));
+                        gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new Portal(x, y,gameContainer), new Grass(x, y)));
                         break;
                     case '*':
                         gameContainer.addEntity(pos, new OverlaidEntity(x, y, new Brick(x, y), new Grass(x, y)));
