@@ -25,15 +25,11 @@ public class Sound {
     public static Clip getSound(String url) {
         Clip clip = null;
         try {
-            File file = new File("D:\\Code\\bomberman\\res\\sounds\\" + url + ".wav");
+            File file = new File("res\\sounds\\" + url + ".wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
             clip = AudioSystem.getClip();
             clip.open(audioStream);
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (UnsupportedAudioFileException e) {
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
         return clip;
