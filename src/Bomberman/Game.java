@@ -1,6 +1,7 @@
 package Bomberman;
 
 import Bomberman.Keyboard.Keyboard;
+import Bomberman.Sound.Sound;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
 
@@ -71,6 +72,8 @@ public class Game extends Canvas {
                 update();
                 cnt--;
             }
+            Sound.stageTheme.start();
+            Sound.stageTheme.loop(Sound.stageTheme.LOOP_CONTINUOUSLY);
             renderGame();
         }
     }

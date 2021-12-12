@@ -7,6 +7,7 @@ import Bomberman.Entities.Entity;
 import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.Keyboard.Keyboard;
+import Bomberman.Sound.Sound;
 import Bomberman.graphics.Unit;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class Bomber extends DynamicEntity {
     protected int hearts;
-    protected int numBomb = 2;
+    protected int numBomb = 8;
     protected int numPlantedBomb = 0;
-    protected int flameSize = 3;
+    protected int flameSize = 1;
     protected int score;
     protected Keyboard input;
     protected int delayBombTime;
@@ -68,6 +69,8 @@ public class Bomber extends DynamicEntity {
             int posY = Unit.pixelToPos(y + sprite.getSize() / 2.0 - sprite.SIZE);
             Entity e = gameContainer.getEntity(posX, posY, this);
             if (!(e instanceof Bomb)) {
+                Sound.setBomb.setFramePosition(0);
+                Sound.setBomb.start();
                 delayBombTime = 15;
                 gameContainer.addBomb(new Bomb(Unit.posToPixel(posX), Unit.posToPixel(posY),flameSize, gameContainer));
                 numPlantedBomb++;
@@ -82,18 +85,22 @@ public class Bomber extends DynamicEntity {
         if (input.up) {
             direction = 0;
             v -= 1 * speed;
+
         }
         if (input.down) {
             direction = 2;
             v += 1 * speed;
+
         }
         if (input.left) {
             direction = 3;
             u -= 1 * speed;
+
         }
         if (input.right) {
             direction = 1;
             u += 1 * speed;
+
         }
         moving = u != x || v != y;
         if (canMove(u, v)) {
@@ -132,42 +139,62 @@ public class Bomber extends DynamicEntity {
     @Override
     public boolean collide(Entity e) {
         if(e instanceof Bomb) {
-//            dead = true;
+            dead = true;
+            Sound.lifeLost.setFramePosition(0);
+            Sound.lifeLost.start();
             return true;
         }
 
         if(e instanceof Enemy) {
             dead = true;
+            Sound.lifeLost.setFramePosition(0);
+            Sound.lifeLost.start();
             return true;
         }
         return true;
     }
 
     private void loadSprite() {
-        int _frame = (frame / 10) % 3;
+        int _frame = (frame / 5) % 3;
         switch (direction) {
             case 0:
                 sprite = Sprite.bomber_up[0];
                 if (moving) {
                     sprite = Sprite.bomber_up[_frame];
+                    if(_frame == 0) {
+                        Sound.move2.setFramePosition(0);
+                        Sound.move2.start();
+                    }
                 }
                 break;
             case 1:
                 sprite = Sprite.bomber_right[0];
                 if (moving) {
                     sprite = Sprite.bomber_right[_frame];
+                    if(_frame == 0) {
+                        Sound.move1.setFramePosition(0);
+                        Sound.move1.start();
+                    }
                 }
                 break;
             case 2:
                 sprite = Sprite.bomber_down[0];
                 if (moving) {
                     sprite = Sprite.bomber_down[_frame];
+                    if(_frame == 0) {
+                        Sound.move2.setFramePosition(0);
+                        Sound.move2.start();
+                    }
                 }
                 break;
             case 3:
                 sprite = Sprite.bomber_left[0];
                 if (moving) {
                     sprite = Sprite.bomber_left[_frame];
+                    if(_frame == 0) {
+                        Sound.move1.setFramePosition(0);
+                        Sound.move1.start();
+                    }
                 }
 
                 break;
