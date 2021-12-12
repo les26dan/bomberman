@@ -30,6 +30,7 @@ public class Game extends Canvas {
         input = new Keyboard();
         gameContainer = new GameContainer(this, input, screen);
         addKeyListener(input);
+        Sprite.init();
     }
 
 
@@ -39,8 +40,7 @@ public class Game extends Canvas {
             createBufferStrategy(3);
             return;
         }
-//    screen.clear();
-        gameContainer.newGame();
+//        screen.clear();
         gameContainer.render(screen);
         for (int i = 0; i < pixels.length; i++) {
             pixels[i] = screen.pixels[i];
@@ -78,4 +78,7 @@ public class Game extends Canvas {
         }
     }
 
+    public GameContainer getGameContainer() {
+        return gameContainer;
+    }
 }

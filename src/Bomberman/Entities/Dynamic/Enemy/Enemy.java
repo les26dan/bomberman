@@ -1,6 +1,7 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
 import Bomberman.Entities.Bomb.Bomb;
+import Bomberman.Entities.Bomb.Flame;
 import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
@@ -98,7 +99,7 @@ public abstract class Enemy extends DynamicEntity {
 
     @Override
     public boolean collide(Entity e) {
-        if (e instanceof Bomb) {
+        if (e instanceof Flame) {
             dead = true;
             return true;
         }

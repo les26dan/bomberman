@@ -1,30 +1,24 @@
 package Bomberman.UI;
-
 import Bomberman.Game;
-import Bomberman.graphics.Sprite;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class Frame extends JFrame {
 
-  public GamePanel gamePanel;
-  private JPanel headPanel;
-  private Game game;
-
   public Frame() {
-    Sprite.init();
-    headPanel = new JPanel(new BorderLayout());
-    gamePanel = new GamePanel();
+    JPanel headPanel = new JPanel(new BorderLayout());
+    GamePanel gamePanel = new GamePanel();
+    Game game = gamePanel.getGame();
+    BoardPanel boardPanel = new BoardPanel();
+    headPanel.add(boardPanel, BorderLayout.PAGE_START);
     headPanel.add(gamePanel, BorderLayout.PAGE_END);
     add(headPanel);
-    game = gamePanel.getGame();
+    setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setTitle("Bomberman");
-    setResizable(false);
     pack();
-    setVisible(true);
     setLocationRelativeTo(null);
+    setVisible(true);
     game.start();
   }
 
