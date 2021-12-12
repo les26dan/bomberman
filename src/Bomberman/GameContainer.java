@@ -57,10 +57,15 @@ public class GameContainer {
             for (int j = 0; j < level.getWidth(); j++)
                 entities[i * level.getWidth() + j].render(screen);
     }
-
+    public void nextLevel() {
+        changeLevel(level.getLevel() + 1);
+    }
     public void changeLevel(int num) {
+        dynamicEntities = new ArrayList<>();
+        bombs = new ArrayList<>();
+
         try {
-            level = new Level("levels/Level" + 1 + ".txt", this);
+            level = new Level("levels/Level" + num + ".txt", this);
             entities = new Entity[level.getHeight() * level.getWidth()];
             plantedBomb = new boolean[level.getHeight() * level.getWidth()];
             existedFlame = new int[level.getHeight() * level.getWidth()];

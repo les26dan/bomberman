@@ -10,10 +10,11 @@ public class Flame extends Entity {
     protected int direction;
     protected int frame = 0;
 
-    public Flame(double x, double y, int direction, boolean last){
+    public Flame(double x, double y, int direction, boolean last, GameContainer gameContainer){
         super(x,y);
         this.direction = direction;
         this.last = last;
+        this.gameContainer = gameContainer;
     }
     @Override
     public void render(Screen screen) {
@@ -23,6 +24,8 @@ public class Flame extends Entity {
     @Override
     public void update() {
         frame = (frame + 1) % 1000;
+        Entity e = gameContainer.getEntity(posX(), posY() + 1, null);
+        e.collide(this);
     }
     @Override
     public boolean collide(Entity e) {

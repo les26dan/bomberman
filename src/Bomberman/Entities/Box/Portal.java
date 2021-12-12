@@ -16,12 +16,12 @@ public class Portal extends Box {
 
         if(e instanceof Bomber) {
 
-            if(!gameContainer.allEnemiesDead())
-                return false;
+//            if(!gameContainer.allEnemiesDead())
+//                return false;
 
-//            if(e.posX() == getX() && e.posY() == getY()) {
-//                if(gameContainer.allEnemiesDead())
-//            }
+            if(e.posX() == getX() && e.posY() == getY()) {
+                gameContainer.nextLevel();
+            }
 
             return true;
         }

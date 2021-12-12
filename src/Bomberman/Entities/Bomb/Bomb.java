@@ -64,7 +64,7 @@ public class Bomb extends Entity {
     }
 
     public void renderFlames(Screen screen) {
-        if (exploded) {
+        if (exploded && explodeTime > 0) {
             for (Flame flame : flameList) {
                 flame.render(screen);
             }
@@ -81,7 +81,7 @@ public class Bomb extends Entity {
         addFlames(1);
         addFlames(2);
         addFlames(3);
-        flameList.add(new Flame(x, y, 4, false));
+        flameList.add(new Flame(x, y, 4, false, gameContainer));
         Bomber bomber = gameContainer.getBomber();
         if (bomber != null && bomber.posX() == posX() && bomber.posY() == posY() + 1) bomber.collide(this);
     }
@@ -111,8 +111,8 @@ public class Bomb extends Entity {
             if (direction == 3) posX--;
 
             if (i == flameMaxSize && gameContainer.getExistedFlame(posX,posY) == 0)
-                flameList.add(new Flame(Unit.posToPixel(posX), Unit.posToPixel(posY), direction, true));
-            else flameList.add(new Flame(Unit.posToPixel(posX), Unit.posToPixel(posY), direction, false));
+                flameList.add(new Flame(Unit.posToPixel(posX), Unit.posToPixel(posY), direction, true, gameContainer));
+            else flameList.add(new Flame(Unit.posToPixel(posX), Unit.posToPixel(posY), direction, false, gameContainer));
             gameContainer.setExistedFlame(posX,posY ,1);
         }
     }

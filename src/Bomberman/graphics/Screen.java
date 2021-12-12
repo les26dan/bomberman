@@ -1,5 +1,4 @@
 package Bomberman.graphics;
-import Bomberman.Entities.Bomb.Flame;
 import Bomberman.Entities.Entity;
 
 public class Screen {
@@ -11,7 +10,6 @@ public class Screen {
         WIDTH = width;
         HEIGHT = height;
         pixels = new int[width * height];
-
     }
 
     public void clear() {
