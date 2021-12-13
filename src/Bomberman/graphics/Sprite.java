@@ -20,15 +20,22 @@ public class Sprite {
     public static Sprite[] oneal_left = new Sprite[3];
     public static Sprite[] oneal_right = new Sprite[3];
     public static Sprite oneal_dead = new Sprite(16, 11, 3, SpriteLoader.origin);
+
     public static Sprite[] minvo_left= new Sprite[3];
     public static Sprite[] minvo_right= new Sprite[3];
     public static Sprite minvo_dead = new Sprite(16, 8, 8,SpriteLoader.origin);
-    public static Sprite[] kondoria_left= new Sprite[3];
-    public static Sprite[] kondoria_right= new Sprite[3];
-    public static Sprite kondoria_dead = new Sprite(16, 10, 8,SpriteLoader.origin);
+
+    public static Sprite[] doria_left= new Sprite[3];
+    public static Sprite[] doria_right= new Sprite[3];
+    public static Sprite doria_dead = new Sprite(16, 10, 8,SpriteLoader.origin);
+
     public static Sprite[] doll_left = new Sprite[3];
     public static Sprite[] doll_right = new Sprite[3];
-    public static Sprite doll_dead = new Sprite(16, 13, 3,SpriteLoader.origin);
+    public static Sprite doll_dead = new Sprite(16, 13, 3, SpriteLoader.origin);
+
+    public static Sprite[] ovape_left = new Sprite[3];
+    public static Sprite[] ovape_right = new Sprite[3];
+    public static Sprite ovape_dead = new Sprite(16, 6, 8, SpriteLoader.origin);
 
     public static Sprite[] mob_dead = new Sprite[3];
 
@@ -118,13 +125,21 @@ public class Sprite {
         minvo_right[1]= new Sprite(16, 9, 6, SpriteLoader.origin);
         minvo_right[2]= new Sprite(16, 9, 7, SpriteLoader.origin);
 
-        kondoria_left[0]= new Sprite(16, 10, 5, SpriteLoader.origin);
-        kondoria_left[1]= new Sprite(16, 10, 6, SpriteLoader.origin);
-        kondoria_left[2]= new Sprite(16, 10, 7, SpriteLoader.origin);
+        doria_left[0]= new Sprite(16, 10, 5, SpriteLoader.origin);
+        doria_left[1]= new Sprite(16, 10, 6, SpriteLoader.origin);
+        doria_left[2]= new Sprite(16, 10, 7, SpriteLoader.origin);
 
-        kondoria_right[0]= new Sprite(16, 11, 5, SpriteLoader.origin);
-        kondoria_right[1]= new Sprite(16, 11, 6, SpriteLoader.origin);
-        kondoria_right[2]= new Sprite(16, 11, 7, SpriteLoader.origin);
+        doria_right[0]= new Sprite(16, 11, 5, SpriteLoader.origin);
+        doria_right[1]= new Sprite(16, 11, 6, SpriteLoader.origin);
+        doria_right[2]= new Sprite(16, 11, 7, SpriteLoader.origin);
+
+        ovape_left[0] = new Sprite(16, 6, 5, SpriteLoader.origin);
+        ovape_left[1] = new Sprite(16, 6, 6, SpriteLoader.origin);
+        ovape_left[2] = new Sprite(16, 6, 7, SpriteLoader.origin);
+
+        ovape_right[0] = new Sprite(16, 7, 5, SpriteLoader.origin);
+        ovape_right[1] = new Sprite(16, 7, 6, SpriteLoader.origin);
+        ovape_right[2] = new Sprite(16, 7, 7, SpriteLoader.origin);
 
         mob_dead[0] = new Sprite(16, 15, 0, SpriteLoader.origin);
         mob_dead[1] = new Sprite(16, 15, 1, SpriteLoader.origin);

@@ -1,17 +1,19 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
+import Bomberman.Entities.Dynamic.Enemy.AI.AILow;
 import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Sprite;
 
 
-public class Balloon extends Enemy {
+public class Balloom extends Enemy {
 
-    public Balloon(int x, int y, GameContainer gameContainer) {
+    public Balloom(int x, int y, GameContainer gameContainer) {
         super(x, y,Sprite.balloom_dead);
         this.gameContainer = gameContainer;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
+        this.ai = new AILow();
     }
 
     @Override
