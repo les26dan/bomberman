@@ -11,6 +11,7 @@ public class Oneal extends Enemy {
     public Oneal(int x, int y, GameContainer gameContainer) {
         super(x, y,Sprite.oneal_dead);
         this.gameContainer = gameContainer;
+        this.value = 200;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
         this.ai = new AIMedium(gameContainer.getBomber(), this);

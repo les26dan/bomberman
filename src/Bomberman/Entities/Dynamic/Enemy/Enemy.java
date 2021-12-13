@@ -31,8 +31,12 @@ public abstract class Enemy extends DynamicEntity {
         if (dead) {
             if (deadTime > 0)
                 deadTime--;
-            else
+            else {
+                Dialog msg = new Dialog(  "" + value, (x + Game.BOX_SIZE/2.0) * Game.SCALE, (y - Game.BOX_SIZE/2.0) * Game.SCALE);
+                gameContainer.setPoints(gameContainer.getPoints() + value);
+                gameContainer.addDialog(msg);
                 remove = true;
+            }
         } else {
             move();
         }
@@ -104,9 +108,6 @@ public abstract class Enemy extends DynamicEntity {
     public boolean collide(Entity e) {
         if (e instanceof Flame) {
             dead = true;
-            Dialog msg = new Dialog("+" + value, x * Game.SCALE, y * Game.SCALE);
-            System.out.println("new");
-            gameContainer.addDialog(msg);
             return true;
         }
         return true;

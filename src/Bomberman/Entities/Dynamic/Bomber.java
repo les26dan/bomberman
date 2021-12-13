@@ -43,8 +43,11 @@ public class Bomber extends DynamicEntity {
         if (dead) {
             if (deadTime > 0)
                 deadTime--;
-            else
+            else {
+                Sound.lifeLost.setFramePosition(0);
+                Sound.lifeLost.start();
                 remove = true;
+            }
         } else {
             move();
             plantBoom();
@@ -138,17 +141,13 @@ public class Bomber extends DynamicEntity {
 
     @Override
     public boolean collide(Entity e) {
-        if(e instanceof Bomb) {
+        if(e instanceof Flame) {
 //            dead = true;
-            Sound.lifeLost.setFramePosition(0);
-            Sound.lifeLost.start();
             return true;
         }
 
         if(e instanceof Enemy) {
             dead = true;
-            Sound.lifeLost.setFramePosition(0);
-            Sound.lifeLost.start();
             return true;
         }
         return true;

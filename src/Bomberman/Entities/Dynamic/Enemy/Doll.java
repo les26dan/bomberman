@@ -10,6 +10,7 @@ public class Doll extends Enemy {
     public Doll(int x, int y, GameContainer gameContainer) {
         super(x, y,Sprite.doll_dead);
         this.gameContainer = gameContainer;
+        this.value = 200;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
     }

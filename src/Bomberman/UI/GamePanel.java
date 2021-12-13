@@ -9,11 +9,10 @@ public class GamePanel extends JPanel {
 
   private Game game;
 
-  public GamePanel() {
+  public GamePanel(Frame frame) {
     setLayout(new BorderLayout());
     setPreferredSize(new Dimension(Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE));
-    System.out.println(Game.WIDTH * Game.SCALE+ " " + Game.HEIGHT * Game.SCALE);
-    game = new Game();
+    game = new Game(frame);
     add(game);
     game.setVisible(true);
     setVisible(true);

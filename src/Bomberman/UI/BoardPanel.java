@@ -16,31 +16,44 @@ public class BoardPanel extends JPanel {
 
     public BoardPanel(Game game) {
         setLayout(new GridLayout());
-        timeLabel = new OutlineLabel("Time: ",3);
-        timeLabel.setForeground(Color.white);
-        timeLabel.setHorizontalAlignment(JLabel.CENTER);
-        timeLabel.setFont(new Font("Lucida Console", Font.BOLD, 50));
-
-        pointsLabel = new OutlineLabel("Points: ",3);
-        pointsLabel.setForeground(Color.white);
-        pointsLabel.setHorizontalAlignment(JLabel.CENTER);
-        pointsLabel.setFont(new Font("Lucida Console", Font.BOLD, 50));
-
-        livesLabel = new OutlineLabel("Lives: ",3);
+        livesLabel = new OutlineLabel("Lives: " + game.getGameContainer().getLives(), 2);
         livesLabel.setForeground(Color.white);
         livesLabel.setHorizontalAlignment(JLabel.CENTER);
-        livesLabel.setFont(new Font("Lucida Console", Font.BOLD, 50));
+        livesLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
 
+        timeLabel = new OutlineLabel("Time: " + game.getGameContainer().getTime(), 2);
+        timeLabel.setForeground(Color.white);
+        timeLabel.setHorizontalAlignment(JLabel.CENTER);
+        timeLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
 
+        pointsLabel = new OutlineLabel("Points: " + game.getGameContainer().getPoints(), 2);
+        pointsLabel.setForeground(Color.white);
+        pointsLabel.setHorizontalAlignment(JLabel.CENTER);
+        pointsLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
+
+        add(livesLabel);
         add(timeLabel);
         add(pointsLabel);
-        add(livesLabel);
 
 
         setBackground(Color.LIGHT_GRAY);
-        setPreferredSize(new Dimension(0, 100));
+        setPreferredSize(new Dimension(0, 50));
+    }
+
+    public void setTime(int time) {
+        timeLabel.setText("Time: " + time);
+    }
+
+    public void setLives(int lives) {
+        livesLabel.setText("Lives: " + lives);
+
+    }
+
+    public void setPoints(int points) {
+        pointsLabel.setText("Points: " + points);
     }
 }
+
 
 class OutlineLabel extends JLabel {
 

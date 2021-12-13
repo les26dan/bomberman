@@ -2,6 +2,8 @@ package Bomberman;
 
 import Bomberman.Keyboard.Keyboard;
 import Bomberman.Sound.Sound;
+import Bomberman.UI.BoardPanel;
+import Bomberman.UI.Frame;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
 
@@ -15,6 +17,7 @@ public class Game extends Canvas {
     private GameContainer gameContainer;
     private Screen screen;
     private Keyboard input;
+    private Frame frame;
     private boolean running = false;
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -25,7 +28,8 @@ public class Game extends Canvas {
     public static int SCALE = 3;
 
 
-    public Game() {
+    public Game(Frame frame) {
+        this.frame = frame;
         screen = new Screen(WIDTH, HEIGHT);
         input = new Keyboard();
         gameContainer = new GameContainer(this, input, screen);
@@ -63,7 +67,6 @@ public class Game extends Canvas {
         long  lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
         double cnt = 0;
-        int frames = 0;
         requestFocus();
         while (running) {
             long cur = System.nanoTime();
@@ -76,6 +79,12 @@ public class Game extends Canvas {
             Sound.stageTheme.start();
             Sound.stageTheme.loop(Sound.stageTheme.LOOP_CONTINUOUSLY);
             renderGame();
+            if(System.currentTimeMillis() - timer > 1000) { //once per second
+                frame.setTime(gameContainer.getTime());
+                frame.setPoints(gameContainer.getPoints());
+//                boardPanel.setLives(gameContainer.getLives());
+                timer += 1000;
+            }
         }
     }
 

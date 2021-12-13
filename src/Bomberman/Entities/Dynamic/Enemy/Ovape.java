@@ -9,6 +9,7 @@ public class Ovape extends Enemy {
     public Ovape(double x, double y, GameContainer gameContainer) {
         super(x, y, Sprite.ovape_dead);
         this.gameContainer = gameContainer;
+        this.value = 600;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
     }

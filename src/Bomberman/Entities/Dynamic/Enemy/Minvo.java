@@ -10,6 +10,7 @@ public class Minvo extends Enemy {
     public Minvo(int x, int y, GameContainer gameContainer) {
         super(x, y,Sprite.minvo_dead);
         this.gameContainer = gameContainer;
+        this.value = 500;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
     }

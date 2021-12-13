@@ -22,12 +22,15 @@ public class GameContainer {
     protected Keyboard input;
     protected Screen screen;
     protected Level level;
-    public Entity[] entities;
-    public List<DynamicEntity> dynamicEntities = new ArrayList<>();
-    public List<Bomb> bombs = new ArrayList<>();
-    public List<Dialog> dialogs = new ArrayList<>();
+    protected Entity[] entities;
+    protected List<DynamicEntity> dynamicEntities = new ArrayList<>();
+    protected List<Bomb> bombs = new ArrayList<>();
+    protected List<Dialog> dialogs = new ArrayList<>();
     protected boolean[] plantedBomb;
     protected int[] existedFlame;
+    protected int time = 200;
+    protected int points = 0;
+    protected int lives = 3;
 
     public GameContainer(Game game, Keyboard input, Screen screen) {
         this.game = game;
@@ -75,6 +78,9 @@ public class GameContainer {
     public void changeLevel(int num) {
         dynamicEntities = new ArrayList<>();
         bombs = new ArrayList<>();
+        time = 200;
+        lives = 3;
+        points = 0;
 
         try {
             level = new Level("levels/Level" + num + ".txt", this);
@@ -139,10 +145,17 @@ public class GameContainer {
         for (int i = 0; i < dialogs.size(); i++) {
             Dialog cur = dialogs.get(i);
             int time = cur.getTime();
-            System.out.println(time);
             cur.setTime(Math.max(0,--time));
             if(time == 0) dialogs.remove(i);
         }
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 
     public Keyboard getInput() {
@@ -151,6 +164,18 @@ public class GameContainer {
 
     public List<Bomb> getBombs() {
         return bombs;
+    }
+
+    public int getTime() {
+        return time--;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int getLives() {
+        return lives;
     }
 
     public Entity getEntity(int posX, int posY, DynamicEntity except) {

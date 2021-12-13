@@ -11,6 +11,7 @@ public class Balloom extends Enemy {
     public Balloom(int x, int y, GameContainer gameContainer) {
         super(x, y,Sprite.balloom_dead);
         this.gameContainer = gameContainer;
+        this.value = 100;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
         this.ai = new AILow();
