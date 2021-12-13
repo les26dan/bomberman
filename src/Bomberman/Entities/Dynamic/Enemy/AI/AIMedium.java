@@ -4,8 +4,8 @@ import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Dynamic.Enemy.Enemy;
 
 public class AIMedium extends AI {
-    Bomber bomber;
-    Enemy enemy;
+    private Bomber bomber;
+    private Enemy enemy;
 
     public AIMedium(Bomber bomber, Enemy enemy) {
         this.bomber = bomber;

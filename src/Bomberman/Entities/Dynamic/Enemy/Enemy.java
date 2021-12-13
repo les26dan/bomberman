@@ -3,6 +3,7 @@ package Bomberman.Entities.Dynamic.Enemy;
 import Bomberman.Entities.Bomb.Bomb;
 import Bomberman.Entities.Bomb.Flame;
 import Bomberman.Entities.Dynamic.DynamicEntity;
+import Bomberman.Entities.Dynamic.Enemy.AI.AI;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
 import Bomberman.graphics.Sprite;
@@ -13,6 +14,7 @@ public abstract class Enemy extends DynamicEntity {
     protected int value;
     protected double steps;
     protected Sprite deadSprite;
+    protected AI ai;
 
     public Enemy(double x, double y, Sprite deadSprite) {
         super(x, y);
@@ -53,7 +55,7 @@ public abstract class Enemy extends DynamicEntity {
         double u = x;
         double v = y;
         if (steps <= 0) {
-            direction = (int) (Math.random() * 100 + 1) % 4;
+            direction = this.ai.calculateDirection();
             steps = Game.BOX_SIZE * 1.0 / speed;
         }
         if (direction == 0)

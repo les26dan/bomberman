@@ -1,5 +1,6 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
+import Bomberman.Entities.Dynamic.Enemy.AI.AIMedium;
 import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Sprite;
@@ -12,6 +13,7 @@ public class Oneal extends Enemy {
         this.gameContainer = gameContainer;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
+        this.ai = new AIMedium(gameContainer.getBomber(), this);
     }
 
     @Override
