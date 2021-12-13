@@ -1,6 +1,8 @@
 package Bomberman.Entities.Box;
 
 import Bomberman.Entities.Bomb.Bomb;
+import Bomberman.Entities.Dynamic.Enemy.Doria;
+import Bomberman.Entities.Dynamic.Enemy.Ovape;
 import Bomberman.Entities.Entity;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
@@ -43,6 +45,6 @@ public class Brick extends Box {
         if(e instanceof Bomb) {
             broken = true;
         }
-        return false;
+        return e instanceof Doria || e instanceof Ovape;
     }
 }
