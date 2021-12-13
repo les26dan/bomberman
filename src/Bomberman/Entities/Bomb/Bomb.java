@@ -127,15 +127,8 @@ public class Bomb extends Entity {
 
     @Override
     public boolean collide(Entity e) {
-            System.out.println("collide" + e.getClass());
         if (e instanceof Bomber) {
-            System.out.println("okok");
-            System.out.println(x);
-            System.out.println(e.getX());
             double diffX = x - e.getX();
-            System.out.println(y);
-            System.out.println(e.getY());
-            System.out.println(sprite.SIZE);
             double diffY = y - e.getY() + sprite.SIZE;
             return (diffX >= -15 && diffX <= 10 && diffY <= 14 && diffY >= -12);
         }

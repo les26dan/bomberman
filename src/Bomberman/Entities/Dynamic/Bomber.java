@@ -16,7 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Bomber extends DynamicEntity {
-    protected int hearts;
     protected int numBomb = 8;
     protected int numPlantedBomb = 0;
     protected int flameSize = 3;

@@ -15,6 +15,7 @@ public class Balloom extends Enemy {
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
         this.ai = new AILow();
+        hearts = 2;
     }
 
     @Override

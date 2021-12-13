@@ -9,6 +9,7 @@ public abstract class DynamicEntity extends Entity {
     protected int frame;
     protected int deadTime = 28;
     protected boolean dead = false;
+    protected int hearts;
 
     public DynamicEntity(double x, double y) {
         super(x, y);
