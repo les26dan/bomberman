@@ -6,6 +6,7 @@ import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Dynamic.Enemy.AI.AI;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
+import Bomberman.UI.Dialog;
 import Bomberman.graphics.Sprite;
 import Bomberman.graphics.Unit;
 import Bomberman.graphics.Screen;
@@ -103,6 +104,9 @@ public abstract class Enemy extends DynamicEntity {
     public boolean collide(Entity e) {
         if (e instanceof Flame) {
             dead = true;
+            Dialog msg = new Dialog("+" + value, x * Game.SCALE, y * Game.SCALE);
+            System.out.println("new");
+            gameContainer.addDialog(msg);
             return true;
         }
         return true;

@@ -9,7 +9,7 @@ public class Frame extends JFrame {
     JPanel headPanel = new JPanel(new BorderLayout());
     GamePanel gamePanel = new GamePanel();
     Game game = gamePanel.getGame();
-    BoardPanel boardPanel = new BoardPanel();
+    BoardPanel boardPanel = new BoardPanel(game);
     headPanel.add(boardPanel, BorderLayout.PAGE_START);
     headPanel.add(gamePanel, BorderLayout.PAGE_END);
     add(headPanel);

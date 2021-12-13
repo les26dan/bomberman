@@ -6,10 +6,12 @@ import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Dynamic.Enemy.Enemy;
 import Bomberman.Entities.Entity;
 import Bomberman.Keyboard.Keyboard;
+import Bomberman.UI.Dialog;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Unit;
 import Bomberman.level.Level;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class GameContainer {
     public Entity[] entities;
     public List<DynamicEntity> dynamicEntities = new ArrayList<>();
     public List<Bomb> bombs = new ArrayList<>();
+    public List<Dialog> dialogs = new ArrayList<>();
     protected boolean[] plantedBomb;
     protected int[] existedFlame;
 
@@ -57,6 +60,15 @@ public class GameContainer {
             for (int j = 0; j < level.getWidth(); j++)
                 entities[i * level.getWidth() + j].render(screen);
     }
+    public void renderDialog(Graphics g) {
+        for (int i = 0; i < dialogs.size(); i++) {
+            Dialog cur = dialogs.get(i);
+
+            g.setFont(new Font("Arial", Font.BOLD, 20));
+            g.setColor(Color.yellow);
+            g.drawString(cur.getDialog(), (int)cur.getX(), (int)cur.getY());
+        }
+    }
     public void nextLevel() {
         changeLevel(level.getLevel() + 1);
     }
@@ -86,6 +98,9 @@ public class GameContainer {
         bombs.add(b);
         plantedBomb[Unit.pixelToPos(b.getX()) + Unit.pixelToPos(b.getY()) * level.getWidth()] = true;
     }
+    public void addDialog(Dialog dialog) {
+        dialogs.add(dialog);
+    }
     public void setExistedFlame(int posX,int posY,int add) {
         existedFlame[posX + posY * level.getWidth()] += add;
     }
@@ -96,6 +111,7 @@ public class GameContainer {
         updateEntities();
         updateDynamic();
         updateBombs();
+        updateDialogs();
         for (int i = 0; i < dynamicEntities.size(); i++) {
             DynamicEntity a = dynamicEntities.get(i);
             if (a.isRemoved()) dynamicEntities.remove(i);
@@ -117,6 +133,15 @@ public class GameContainer {
     void updateBombs() {
         for (Bomb b : bombs) {
             b.update();
+        }
+    }
+    protected void updateDialogs() {
+        for (int i = 0; i < dialogs.size(); i++) {
+            Dialog cur = dialogs.get(i);
+            int time = cur.getTime();
+            System.out.println(time);
+            cur.setTime(Math.max(0,--time));
+            if(time == 0) dialogs.remove(i);
         }
     }
 

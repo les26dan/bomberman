@@ -19,7 +19,7 @@ public class Bomber extends DynamicEntity {
     protected int hearts;
     protected int numBomb = 8;
     protected int numPlantedBomb = 0;
-    protected int flameSize = 1;
+    protected int flameSize = 3;
     protected int score;
     protected Keyboard input;
     protected int delayBombTime;
@@ -139,7 +139,7 @@ public class Bomber extends DynamicEntity {
     @Override
     public boolean collide(Entity e) {
         if(e instanceof Bomb) {
-            dead = true;
+//            dead = true;
             Sound.lifeLost.setFramePosition(0);
             Sound.lifeLost.start();
             return true;

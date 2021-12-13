@@ -47,6 +47,7 @@ public class Game extends Canvas {
         }
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        gameContainer.renderDialog(g);
         g.dispose();
         bs.show();
     }
