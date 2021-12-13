@@ -9,6 +9,7 @@ public class Keyboard implements KeyListener {
     public boolean left;
     public boolean right;
     public boolean space;
+    public boolean anyKey;
     private boolean[] status = new boolean[120];
 
     @Override
@@ -25,6 +26,9 @@ public class Keyboard implements KeyListener {
     }
 
     public void update() {
+        anyKey = false;
+        for(boolean cur: status)
+        anyKey = anyKey || cur;
         up = status[KeyEvent.VK_UP]  || status[KeyEvent.VK_W];
         down = status[KeyEvent.VK_DOWN]  || status[KeyEvent.VK_S];
         left = status[KeyEvent.VK_LEFT]  || status[KeyEvent.VK_A];

@@ -28,18 +28,16 @@ public class GameContainer {
     protected List<Dialog> dialogs = new ArrayList<>();
     protected boolean[] plantedBomb;
     protected int[] existedFlame;
-    protected int time = 200;
-    protected int points = 0;
-    protected int lives = 3;
+    protected int time;
+    protected int points;
+    protected int pauseTime;
+    protected int screenType;
 
     public GameContainer(Game game, Keyboard input, Screen screen) {
         this.game = game;
         this.input = input;
         this.screen = screen;
         changeLevel(1);
-    }
-
-    public void newGame() {
     }
 
     public void render(Screen screen) {
@@ -64,24 +62,35 @@ public class GameContainer {
                 entities[i * level.getWidth() + j].render(screen);
     }
     public void renderDialog(Graphics g) {
-        for (int i = 0; i < dialogs.size(); i++) {
-            Dialog cur = dialogs.get(i);
-
+        for (Dialog cur : dialogs) {
             g.setFont(new Font("Arial", Font.BOLD, 20));
             g.setColor(Color.yellow);
-            g.drawString(cur.getDialog(), (int)cur.getX(), (int)cur.getY());
+            g.drawString(cur.getDialog(), (int) cur.getX(), (int) cur.getY());
         }
     }
     public void nextLevel() {
         changeLevel(level.getLevel() + 1);
     }
+    public void restartLevel() {
+        changeLevel(level.getLevel());
+        points = 0;
+    }
+    public void newGame() {
+        changeLevel(1);
+        points = 0;
+    }
     public void changeLevel(int num) {
         dynamicEntities = new ArrayList<>();
         bombs = new ArrayList<>();
-        time = 200;
-        lives = 3;
-        points = 0;
-
+        time = 100;
+        if(num != 3) {
+            screenType = 1;
+            pauseTime = 2;
+        }
+        else {
+            screenType = 2;
+            pauseTime = 9999;
+        }
         try {
             level = new Level("levels/Level" + num + ".txt", this);
             entities = new Entity[level.getHeight() * level.getWidth()];
@@ -114,13 +123,22 @@ public class GameContainer {
         return existedFlame[posX + posY * level.getWidth()];
     }
     void update() {
+        if(time < 0) {
+            restartLevel();
+            return ;
+        }
         updateEntities();
         updateDynamic();
         updateBombs();
         updateDialogs();
         for (int i = 0; i < dynamicEntities.size(); i++) {
             DynamicEntity a = dynamicEntities.get(i);
-            if (a.isRemoved()) dynamicEntities.remove(i);
+            if (a.isRemoved()) {
+                dynamicEntities.remove(i);
+                if(a instanceof Bomber) {
+                    restartLevel();
+                }
+            }
         }
     }
 
@@ -154,10 +172,9 @@ public class GameContainer {
         this.points = points;
     }
 
-    public void setLives(int lives) {
-        this.lives = lives;
+    public void setPauseTime(int pauseTime) {
+        this.pauseTime = pauseTime;
     }
-
     public Keyboard getInput() {
         return input;
     }
@@ -172,10 +189,6 @@ public class GameContainer {
 
     public int getPoints() {
         return points;
-    }
-
-    public int getLives() {
-        return lives;
     }
 
     public Entity getEntity(int posX, int posY, DynamicEntity except) {
@@ -193,6 +206,9 @@ public class GameContainer {
         }
             return entities[posX + posY * level.getWidth()].getEntity();
     }
+    public int getPauseTime() {
+        return pauseTime;
+    }
 
     public Bomber getBomber() {
         for (DynamicEntity dynamicEntity : dynamicEntities) {
@@ -209,6 +225,11 @@ public class GameContainer {
                 ++res;
         }
         return (res == 0);
+    }
+    public void drawScreen(Graphics g) {
+        if(screenType == 2)
+            screen.drawWinGame(g,points);
+        if(screenType == 1) screen.drawChangeLevel(g, level.getLevel());
     }
 
 }

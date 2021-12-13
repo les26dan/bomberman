@@ -29,10 +29,6 @@ public class Frame extends JFrame {
     boardPanel.setTime(time);
   }
 
-  public void setLives(int lives) {
-    boardPanel.setLives(lives);
-  }
-
   public void setPoints(int points) {
     boardPanel.setPoints(points);
   }

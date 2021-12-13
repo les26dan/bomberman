@@ -26,8 +26,8 @@ public class Bomb extends Entity {
         this.frame = 0;
         this.gameContainer = gameContainer;
         this.flameSize = flameSize;
+        this.sprite = Sprite.bomb[0];
     }
-
 
     public boolean isExploded() {
         return exploded;

@@ -12,14 +12,9 @@ public class BoardPanel extends JPanel {
 
     private JLabel timeLabel;
     private JLabel pointsLabel;
-    private JLabel livesLabel;
 
     public BoardPanel(Game game) {
         setLayout(new GridLayout());
-        livesLabel = new OutlineLabel("Lives: " + game.getGameContainer().getLives(), 2);
-        livesLabel.setForeground(Color.white);
-        livesLabel.setHorizontalAlignment(JLabel.CENTER);
-        livesLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
 
         timeLabel = new OutlineLabel("Time: " + game.getGameContainer().getTime(), 2);
         timeLabel.setForeground(Color.white);
@@ -31,7 +26,6 @@ public class BoardPanel extends JPanel {
         pointsLabel.setHorizontalAlignment(JLabel.CENTER);
         pointsLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
 
-        add(livesLabel);
         add(timeLabel);
         add(pointsLabel);
 
@@ -42,11 +36,6 @@ public class BoardPanel extends JPanel {
 
     public void setTime(int time) {
         timeLabel.setText("Time: " + time);
-    }
-
-    public void setLives(int lives) {
-        livesLabel.setText("Lives: " + lives);
-
     }
 
     public void setPoints(int points) {
@@ -104,10 +93,6 @@ class OutlineLabel extends JLabel {
             super.paint(g);
             return;
         }
-
-        // 1 2 3
-        // 8 9 4
-        // 7 6 5
 
         if (isOpaque()) {
             super.paint(g);

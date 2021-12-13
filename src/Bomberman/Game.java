@@ -2,7 +2,6 @@ package Bomberman;
 
 import Bomberman.Keyboard.Keyboard;
 import Bomberman.Sound.Sound;
-import Bomberman.UI.BoardPanel;
 import Bomberman.UI.Frame;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
@@ -11,6 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.concurrent.TimeUnit;
 
 public class Game extends Canvas {
 
@@ -56,6 +56,23 @@ public class Game extends Canvas {
         bs.show();
     }
 
+    private void renderScreen() {
+        BufferStrategy bs = getBufferStrategy();
+        if (bs == null) {
+            createBufferStrategy(3);
+            return;
+        }
+
+//        screen.clear();
+
+        Graphics g = bs.getDrawGraphics();
+
+        getGameContainer().drawScreen(g);
+
+        g.dispose();
+        bs.show();
+    }
+
     void update() {
         input.update();
         gameContainer.update();
@@ -64,28 +81,52 @@ public class Game extends Canvas {
     public void start() {
         running = true;
         final double rate = 64.0;
-        long  lastTime = System.nanoTime();
+        long lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
         double cnt = 0;
+        int dem = 0;
+        int pauseTime = 0;
         requestFocus();
         while (running) {
             long cur = System.nanoTime();
             cnt += (cur - lastTime) / (1000000000.0 / rate);
             lastTime = cur;
-            while(cnt >= 1) {
-                update();
+            while (cnt >= 1) {
+                if (pauseTime == 0)
+                    update();
                 cnt--;
             }
             Sound.stageTheme.start();
             Sound.stageTheme.loop(Sound.stageTheme.LOOP_CONTINUOUSLY);
-            renderGame();
-            if(System.currentTimeMillis() - timer > 1000) { //once per second
-                frame.setTime(gameContainer.getTime());
+            pauseTime = gameContainer.getPauseTime();
+            if (pauseTime > 0) {
+                renderScreen();
+                if (pauseTime >= 1000) dem++;
+            } else
+                renderGame();
+            if (System.currentTimeMillis() - timer > 1000) {
+                if (pauseTime == 0) frame.setTime(gameContainer.getTime());
                 frame.setPoints(gameContainer.getPoints());
-//                boardPanel.setLives(gameContainer.getLives());
                 timer += 1000;
+                gameContainer.setPauseTime(Math.max(0, pauseTime - 1));
+            }
+            if (dem == 2) {
+                try {
+                TimeUnit.SECONDS.sleep(1);
+                    while(true) {
+                        input.update();
+                        if (input.anyKey) {
+                            gameContainer.newGame();
+                            timer = System.currentTimeMillis();
+                            dem = 0;
+                            break;
+                        }
+                    }
+                } catch (Exception e) {
+                }
             }
         }
+
     }
 
     public GameContainer getGameContainer() {
