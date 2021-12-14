@@ -9,6 +9,7 @@ import Bomberman.Entities.Dynamic.Enemy.Doria;
 import Bomberman.Entities.Dynamic.Enemy.Enemy;
 import Bomberman.Entities.Dynamic.Enemy.Ovape;
 import Bomberman.Entities.Entity;
+import Bomberman.Game;
 import Bomberman.GameContainer;
 
 import java.util.ArrayList;
@@ -27,6 +28,12 @@ public class AIHigh extends AI {
 
     @Override
     public int calculateDirection() {
+        if (enemy.getSteps() <= 0) {
+            enemy.setSteps(Game.BOX_SIZE * 1.0 / enemy.getSpeed());
+            double _steps = enemy.getSteps();
+            enemy.setRes((_steps - (int) _steps) / _steps);
+        }
+        else return enemy.getDirection();
         int direction = 0;
         int posX = enemy.posX();
         int posY = enemy.posY();

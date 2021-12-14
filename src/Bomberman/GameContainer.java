@@ -88,7 +88,7 @@ public class GameContainer {
     public void changeLevel(int num) {
         dynamicEntities = new ArrayList<>();
         bombs = new ArrayList<>();
-        time = 100;
+        time = 200;
         Screen.addX = 0;
         killedEnemy = false;
         if(num != 3) {

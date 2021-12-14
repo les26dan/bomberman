@@ -144,16 +144,16 @@ public class Bomber extends DynamicEntity {
     @Override
     public boolean collide(Entity e) {
         if(e instanceof Flame) {
-            dead = true;
+//            dead = true;
             return true;
         }
         if(e instanceof Bomb) {
-            dead = true;
+//            dead = true;
             return true;
         }
 
         if(e instanceof Enemy) {
-            dead = true;
+//            dead = true;
             return true;
         }
         return true;

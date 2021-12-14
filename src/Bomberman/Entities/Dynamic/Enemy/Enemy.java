@@ -14,6 +14,7 @@ import Bomberman.graphics.Screen;
 public abstract class Enemy extends DynamicEntity {
     protected int value;
     protected double steps;
+    protected double res;
     protected Sprite deadSprite;
     protected AI ai;
 
@@ -24,19 +25,21 @@ public abstract class Enemy extends DynamicEntity {
     }
 
     protected abstract void loadSprite();
-
+    public void kill() {
+        if (deadTime > 0)
+            deadTime--;
+        else {
+            Dialog msg = new Dialog(  "" + value, (x + Game.BOX_SIZE/2.0) * Game.SCALE, (y - Game.BOX_SIZE/2.0) * Game.SCALE);
+            gameContainer.setPoints(gameContainer.getPoints() + value);
+            gameContainer.addDialog(msg);
+            remove = true;
+        }
+    }
     @Override
     public void update() {
         frame = (frame + 1) % 1000;
         if (dead) {
-            if (deadTime > 0)
-                deadTime--;
-            else {
-                Dialog msg = new Dialog(  "" + value, (x + Game.BOX_SIZE/2.0) * Game.SCALE, (y - Game.BOX_SIZE/2.0) * Game.SCALE);
-                gameContainer.setPoints(gameContainer.getPoints() + value);
-                gameContainer.addDialog(msg);
-                remove = true;
-            }
+            kill();
         } else {
             move();
         }
@@ -69,8 +72,8 @@ public abstract class Enemy extends DynamicEntity {
         if (direction == 1)
             u += 1 * speed;
         moving = u != x || v != y;
-        if (canMove((u - x) * 2, (v - y) * 2)) {
-            steps -= 1;
+        if (canMove(Math.round((u - x) * (1.0 / speed)), Math.round((v - y) * (1.0 / speed)))) {
+            steps -= 1 + res;
             x = u;
             y = v;
         } else {
@@ -119,5 +122,11 @@ public abstract class Enemy extends DynamicEntity {
         this.steps = steps;
     }
 
+    public double getRes() {
+        return res;
+    }
 
+    public void setRes(double res) {
+        this.res = res;
+    }
 }

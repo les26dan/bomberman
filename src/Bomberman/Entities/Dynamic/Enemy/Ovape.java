@@ -1,62 +1,45 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
 import Bomberman.Entities.Dynamic.Enemy.AI.AIHigh;
+import Bomberman.Entities.Dynamic.Enemy.AI.AILow;
 import Bomberman.Game;
 import Bomberman.GameContainer;
-import Bomberman.UI.Dialog;
 import Bomberman.graphics.Sprite;
 
 public class Ovape extends Enemy {
-    private int timeChasing = 0;
+    private int turnChasing = 0;
     private boolean mustReset = false;
+
     public Ovape(double x, double y, GameContainer gameContainer) {
         super(x, y, Sprite.ovape_dead);
         this.gameContainer = gameContainer;
         this.value = 600;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
-        this.ai = new AIHigh(gameContainer, this, 0);
+        this.res = (steps - (int) steps)/steps;
+        this.ai = new AILow(this);
     }
 
     @Override
     public void update() {
-        System.out.println(timeChasing);
-        if(mustReset && steps == 0) {
-            mustReset = false;
-            this.speed = 0.5;
-            AIHigh _ai = (AIHigh) this.ai;
-            _ai.setChasingRadius(0);
+        if (steps <= 0) {
+            turnChasing = Math.max(0,turnChasing - 1);
+            if (turnChasing >= 1 && turnChasing <= 14) {
+                this.speed = 0.8;
+                this.ai = new AIHigh(gameContainer, this, 1000);
+            }
+            if (turnChasing == 0) {
+                this.speed = 0.5;
+                this.ai = new AILow(this);
+            }
         }
-        //System.out.println(steps);
         frame = (frame + 1) % 1000;
         if (dead) {
-            if (deadTime > 0)
-                deadTime--;
-            else {
-                Dialog msg = new Dialog(  "" + value, (x + Game.BOX_SIZE/2.0) * Game.SCALE, (y - Game.BOX_SIZE/2.0) * Game.SCALE);
-                gameContainer.setPoints(gameContainer.getPoints() + value);
-                gameContainer.addDialog(msg);
-                remove = true;
-            }
+            kill();
         } else {
-            if(timeChasing > 0) {
-                timeChasing--;
-            } else {
-                if(steps != 0) {
-                    mustReset = true;
-                } else {
-                    this.speed = 0.5;
-                    AIHigh _ai = (AIHigh) this.ai;
-                    _ai.setChasingRadius(0);
-                }
-            }
-            if(gameContainer.isKilledEnemy() && steps == 0) {
-                this.speed = 0.75;
-                AIHigh _ai = (AIHigh) this.ai;
-                _ai.setChasingRadius(1000);
+            if (gameContainer.isKilledEnemy()) {
+                turnChasing = 15;
                 gameContainer.setKilledEnemy(false);
-                timeChasing = 200;
-                this.steps = Game.BOX_SIZE * 1.0 / speed;
             }
             move();
         }
