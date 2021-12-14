@@ -1,24 +1,24 @@
-#Bomberman
+# Bomberman
 
 [Giới thiệu](#giới-thiệu) <br>
 [Cài đặt](#cài-đặt) <br>
 [Mô tả về các đối tượng trong trò chơi](#mô-tả-về-các-đối-tượng-trong-trò-chơi) <br>
 [Mô tả cách chơi](#Mô-tả-cách-chơi) <br>
 
-##Giới thiệu
+## Giới thiệu
 Project này là bài tập lớn số 2 môn Lập trình hướng đối tượng. Nhiệm vụ của bọn mình là mô phỏng lại trò chơi Bomberman kinh điển của NES.
 
 Nhóm gồm các sinh viên:
 - [Lê Sỹ Đan](https://www.facebook.com/danle133) - 20020044
 
 - [Trương Minh Trí](https://www.facebook.com/minhtriuet/) - 20020034
-##Cài đặt
+## Cài đặt
 Để khởi chạy được game cần cài đặt [Java SE Development Kit 8](https://www.oracle.com/java/technologies/downloads/#java8), sau đó:
 - Clone project. Tạo project mới bằng IntelIJ bằng cách trỏ tới thư mục chứa project đã clone.
 - Sau khi tạo project thành công, trong IntelIJ, click vào thư mục res trong phần quản lí Project, chuột phải chọn Make Directory as, sau đó chọn Resources Root 
 - Chạy file Bomberman.java
 
-##Mô tả về các đối tượng trong trò chơi
+## Mô tả về các đối tượng trong trò chơi
 - ![](res/sprites/player.png) *Bomber* là nhân vật chính của trò chơi. Bomber có thể di chuyển theo 4 hướng trái/phải/lên/xuống theo sự điều khiển của người chơi.
 
 - ![](res/sprites/balloom.png) *Enemy* là các đối tượng mà Bomber phải tiêu diệt hết để có thể qua Level. Enemy có thể di chuyển ngẫu nhiên hoặc tự đuổi theo Bomber,.... tùy theo loại Enemy. Các loại Enemy sẽ được mô tả cụ thể ở phần dưới.
@@ -51,7 +51,8 @@ Các loại Enemy:
 -![](res/sprites/doria.png) Doria có tốc độ di chuyển chậm, tìm kiếm và đuổi theo Bomber trong suốt màn chơi, có khả năng đi xuyên qua các khối mềm như Brick, Item.
 
 -![](res/sprites/ovape.png) Ovape cũng có khả năng đi xuyên tường. Bình thường Ovape sẽ di chuyển ngẫu nhiên với vận tốc cố đinh, nhưng khi có một Enemy bị chết, Ovape sẽ nổi điên, truy đuổi Bomber trong một khoảng thời gian cũng cố định, đồng thời tăng tốc độ. Hết thời gian "crazy", Ovape sẽ trở lại trạng thái bình thường. Sẽ có âm thanh cảnh báo khi Ovape trong thái "đi săn mồi".
-##Mô tả cách chơi
+
+## Mô tả cách chơi
 - Người chơi có thể sử dụng 4 phím điều hướng hoặc 4 phím W/A/S/D để điều khiển nhân vật.
 - Nhấn phím space để đặt bom.
 - Khi một Enemy bị nổ chết, người chơi sẽ nhận được điểm tương ứng với giá trị của Enemy.
