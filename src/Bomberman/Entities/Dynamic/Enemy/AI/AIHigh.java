@@ -1,9 +1,13 @@
 package Bomberman.Entities.Dynamic.Enemy.AI;
 
+import Bomberman.Entities.Bomb.Bomb;
 import Bomberman.Entities.Box.Grass;
 import Bomberman.Entities.Box.Item.Item;
+import Bomberman.Entities.Box.Wall;
 import Bomberman.Entities.Dynamic.Bomber;
+import Bomberman.Entities.Dynamic.Enemy.Doria;
 import Bomberman.Entities.Dynamic.Enemy.Enemy;
+import Bomberman.Entities.Dynamic.Enemy.Ovape;
 import Bomberman.Entities.Entity;
 import Bomberman.GameContainer;
 
@@ -14,8 +18,8 @@ public class AIHigh extends AI {
     private Enemy enemy;
     private int chasingRadius;
     private GameContainer gameContainer;
-    public AIHigh(Bomber bomber, Enemy enemy, int chasingRadius, GameContainer gameContainer) {
-        this.bomber = bomber;
+    public AIHigh(GameContainer gameContainer, Enemy enemy, int chasingRadius) {
+        this.bomber = gameContainer.getBomber();
         this.enemy = enemy;
         this.chasingRadius = chasingRadius;
         this.gameContainer = gameContainer;
@@ -84,7 +88,8 @@ public class AIHigh extends AI {
                     direction =  calculate(u.getFirst(), u.getSecond());
             }
         } else {
-            direction =  random.nextInt(4);
+            AI ai = new AILow(enemy);
+            direction =  ai.calculateDirection();
         }
         return direction;
     }
@@ -101,9 +106,17 @@ public class AIHigh extends AI {
         if (curX < 0 || curX > 30) return false;
         if (curY < 0 || curY > 12) return false;
         Entity curEntity =  gameContainer.getEntity(curX, curY, bomber);
+        if(enemy instanceof Doria || enemy instanceof Ovape) {
+            return !(curEntity instanceof Wall
+            || curEntity instanceof Bomb);
+        }
         return  curEntity instanceof Grass
                 || curEntity instanceof Item
                 || curEntity instanceof Enemy;
+    }
+
+    public void setChasingRadius(int chasingRadius) {
+        this.chasingRadius = chasingRadius;
     }
 }
 
@@ -123,4 +136,5 @@ class pii {
     public int getSecond() {
         return second;
     }
+
 }

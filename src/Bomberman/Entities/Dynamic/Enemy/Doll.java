@@ -1,5 +1,6 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
+import Bomberman.Entities.Dynamic.Enemy.AI.AILow;
 import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Sprite;
@@ -13,6 +14,7 @@ public class Doll extends Enemy {
         this.value = 200;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
+        this.ai = new AILow(this);
     }
 
     @Override

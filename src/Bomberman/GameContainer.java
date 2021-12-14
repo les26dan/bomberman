@@ -32,6 +32,7 @@ public class GameContainer {
     protected int points;
     protected int pauseTime;
     protected int screenType;
+    private boolean killedEnemy = false;
 
     public GameContainer(Game game, Keyboard input, Screen screen) {
         this.game = game;
@@ -83,6 +84,7 @@ public class GameContainer {
         dynamicEntities = new ArrayList<>();
         bombs = new ArrayList<>();
         time = 100;
+        killedEnemy = false;
         if(num != 3) {
             screenType = 1;
             pauseTime = 2;
@@ -232,4 +234,11 @@ public class GameContainer {
         if(screenType == 1) screen.drawChangeLevel(g, level.getLevel());
     }
 
+    public boolean isKilledEnemy() {
+        return killedEnemy;
+    }
+
+    public void setKilledEnemy(boolean killedEnemy) {
+        this.killedEnemy = killedEnemy;
+    }
 }

@@ -1,5 +1,6 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
+import Bomberman.Entities.Dynamic.Enemy.AI.AIHigh;
 import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Sprite;
@@ -11,8 +12,9 @@ public class Doria extends Enemy {
         super(x, y,Sprite.doria_dead);
         this.gameContainer = gameContainer;
         this.value = 400;
-        this.speed = 0.5;
+        this.speed = 0.25;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
+        this.ai = new AIHigh(gameContainer, this, 5);
     }
 
     @Override

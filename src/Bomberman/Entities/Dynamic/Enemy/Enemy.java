@@ -59,10 +59,7 @@ public abstract class Enemy extends DynamicEntity {
     protected void move() {
         double u = x;
         double v = y;
-        if (steps <= 0) {
-            direction = this.ai.calculateDirection();
-            steps = Game.BOX_SIZE * 1.0 / speed;
-        }
+        direction = this.ai.calculateDirection();
         if (direction == 0)
             v -= 1 * speed;
         if (direction == 2)
@@ -108,8 +105,19 @@ public abstract class Enemy extends DynamicEntity {
     public boolean collide(Entity e) {
         if (e instanceof Flame) {
             dead = true;
+            gameContainer.setKilledEnemy(true);
             return true;
         }
         return true;
     }
+
+    public double getSteps() {
+        return steps;
+    }
+
+    public void setSteps(double steps) {
+        this.steps = steps;
+    }
+
+
 }

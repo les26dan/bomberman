@@ -17,4 +17,12 @@ public abstract class DynamicEntity extends Entity {
     }
     protected abstract boolean canMove(double x, double y);
     protected abstract void move();
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
 }

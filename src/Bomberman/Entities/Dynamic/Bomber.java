@@ -18,7 +18,7 @@ import java.util.List;
 public class Bomber extends DynamicEntity {
     protected int numBomb = 8;
     protected int numPlantedBomb = 0;
-    protected int flameSize = 3;
+    protected int flameSize = 2;
     protected int score;
     protected Keyboard input;
     protected int delayBombTime;

@@ -83,6 +83,10 @@ public class Level {
                         gameContainer.addEntity(pos, new Grass(x, y));
                         gameContainer.addDynamicEntity(new Doria(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
                         break;
+                    case  '6':
+                        gameContainer.addEntity(pos, new Grass(x, y));
+                        gameContainer.addDynamicEntity(new Ovape(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        break;
                     case 'p':
                         gameContainer.addDynamicEntity(new Bomber(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
                         gameContainer.addEntity(pos, new Grass(x, y));

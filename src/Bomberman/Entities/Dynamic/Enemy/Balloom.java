@@ -14,7 +14,7 @@ public class Balloom extends Enemy {
         this.value = 100;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
-        this.ai = new AILow();
+        this.ai = new AILow(this);
         hearts = 2;
     }
 

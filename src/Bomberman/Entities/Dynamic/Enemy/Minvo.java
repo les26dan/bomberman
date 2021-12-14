@@ -1,5 +1,6 @@
 package Bomberman.Entities.Dynamic.Enemy;
 
+import Bomberman.Entities.Dynamic.Enemy.AI.AIHigh;
 import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.graphics.Sprite;
@@ -11,8 +12,9 @@ public class Minvo extends Enemy {
         super(x, y,Sprite.minvo_dead);
         this.gameContainer = gameContainer;
         this.value = 500;
-        this.speed = 0.5;
+        this.speed = 0.75;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
+        this.ai = new AIHigh(gameContainer, this, 10);
     }
 
     @Override

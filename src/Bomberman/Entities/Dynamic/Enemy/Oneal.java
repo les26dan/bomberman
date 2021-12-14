@@ -16,7 +16,7 @@ public class Oneal extends Enemy {
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
         //this.ai = new AIMedium(gameContainer.getBomber(), this);
-        this.ai = new AIHigh(gameContainer.getBomber(), this, 5, gameContainer);
+        this.ai = new AIHigh(gameContainer, this, 5);
         hearts = 1;
     }
 
