@@ -37,6 +37,10 @@ public abstract class Entity {
     public boolean isRemoved() {
         return remove;
     }
+    public void remove() {
+        this.remove = true;
+    }
+
     public int posX(){
         return Unit.pixelToPos(x + 8);
     }

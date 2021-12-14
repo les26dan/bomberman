@@ -67,7 +67,7 @@ public class Screen {
         font = new Font("Lucida Console", Font.PLAIN, 10 * Game.SCALE);
         g.setFont(font);
         g.setColor(Color.gray);
-        drawCenteredString("Press any key to continue", WIDTH* Game.SCALE, HEIGHT*Game.SCALE + (Game.BOX_SIZE * 6) * Game.SCALE, g);
+        drawCenteredString("Press any key to start new game", WIDTH* Game.SCALE, HEIGHT*Game.SCALE + (Game.BOX_SIZE * 6) * Game.SCALE, g);
     }
     public void drawChangeLevel(Graphics g, int level) {
         g.setColor(Color.black);

@@ -11,15 +11,16 @@ public class Portal extends Box {
         sprite = Sprite.portal;
         this.gameContainer = gameContainer;
     }
+
     @Override
     public boolean collide(Entity e) {
 
-        if(e instanceof Bomber) {
+        if (e instanceof Bomber) {
 
-            if(!gameContainer.allEnemiesDead())
+            if (!gameContainer.allEnemiesDead())
                 return false;
 
-            if(e.posX() == getX() && e.posY() == getY()) {
+            if (e.posX() == getX() && e.posY() == getY()) {
                 gameContainer.nextLevel();
             }
 

@@ -8,42 +8,6 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class BoardPanel extends JPanel {
-
-    private JLabel timeLabel;
-    private JLabel pointsLabel;
-
-    public BoardPanel(Game game) {
-        setLayout(new GridLayout());
-
-        timeLabel = new OutlineLabel("Time: " + game.getGameContainer().getTime(), 2);
-        timeLabel.setForeground(Color.white);
-        timeLabel.setHorizontalAlignment(JLabel.CENTER);
-        timeLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
-
-        pointsLabel = new OutlineLabel("Points: " + game.getGameContainer().getPoints(), 2);
-        pointsLabel.setForeground(Color.white);
-        pointsLabel.setHorizontalAlignment(JLabel.CENTER);
-        pointsLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
-
-        add(timeLabel);
-        add(pointsLabel);
-
-
-        setBackground(Color.LIGHT_GRAY);
-        setPreferredSize(new Dimension(0, 50));
-    }
-
-    public void setTime(int time) {
-        timeLabel.setText("Time: " + time);
-    }
-
-    public void setPoints(int points) {
-        pointsLabel.setText("Points: " + points);
-    }
-}
-
-
 class OutlineLabel extends JLabel {
 
     private static final long serialVersionUID = 1L;
@@ -101,25 +65,61 @@ class OutlineLabel extends JLabel {
         forceTransparent = true;
         isPaintingOutline = true;
         g.translate(-thickness, -thickness);
-        super.paint(g); // 1
+        super.paint(g);
         g.translate(thickness, 0);
-        super.paint(g); // 2
+        super.paint(g);
         g.translate(thickness, 0);
-        super.paint(g); // 3
+        super.paint(g);
         g.translate(0, thickness);
-        super.paint(g); // 4
+        super.paint(g);
         g.translate(0, thickness);
-        super.paint(g); // 5
+        super.paint(g);
         g.translate(-thickness, 0);
-        super.paint(g); // 6
+        super.paint(g);
         g.translate(-thickness, 0);
-        super.paint(g); // 7
+        super.paint(g);
         g.translate(0, -thickness);
-        super.paint(g); // 8
-        g.translate(thickness, 0); // 9
+        super.paint(g);
+        g.translate(thickness, 0);
         isPaintingOutline = false;
 
         super.paint(g);
         forceTransparent = false;
     }
 }
+
+public class BoardPanel extends JPanel {
+
+    private JLabel timeLabel;
+    private JLabel pointsLabel;
+
+    public BoardPanel(Game game) {
+        setLayout(new GridLayout());
+
+        timeLabel = new OutlineLabel("Time: " + game.getGameContainer().getTime(), 2);
+        timeLabel.setForeground(Color.white);
+        timeLabel.setHorizontalAlignment(JLabel.CENTER);
+        timeLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
+
+        pointsLabel = new OutlineLabel("Points: " + game.getGameContainer().getPoints(), 2);
+        pointsLabel.setForeground(Color.white);
+        pointsLabel.setHorizontalAlignment(JLabel.CENTER);
+        pointsLabel.setFont(new Font("Lucida Console", Font.BOLD, 20));
+
+        add(timeLabel);
+        add(pointsLabel);
+
+
+        setBackground(Color.LIGHT_GRAY);
+        setPreferredSize(new Dimension(0, 50));
+    }
+
+    public void setTime(int time) {
+        timeLabel.setText("Time: " + time);
+    }
+
+    public void setPoints(int points) {
+        pointsLabel.setText("Points: " + points);
+    }
+}
+
