@@ -3,7 +3,7 @@
 [Giới thiệu](#giới-thiệu) <br>
 [Cài đặt](#cài-đặt) <br>
 [Mô tả về các đối tượng trong trò chơi](#mô-tả-về-các-đối-tượng-trong-trò-chơi) <br>
-[Mô tả cách chơi](#Mô-tả-cách-chơi) <br>
+[Mô tả cách chơi](#mô-tả-cách-chơi) <br>
 
 ## Giới thiệu
 Project này là bài tập lớn số 2 môn Lập trình hướng đối tượng. Nhiệm vụ của bọn mình là mô phỏng lại trò chơi Bomberman kinh điển của NES.
@@ -15,8 +15,8 @@ Nhóm gồm các sinh viên:
 ## Cài đặt
 Để khởi chạy được game cần cài đặt [Java SE Development Kit 8](https://www.oracle.com/java/technologies/downloads/#java8), sau đó:
 - Clone project. Tạo project mới bằng IntelIJ bằng cách trỏ tới thư mục chứa project đã clone.
-- Sau khi tạo project thành công, trong IntelIJ, click vào thư mục res trong phần quản lí Project, chuột phải chọn Make Directory as, sau đó chọn Resources Root 
-- Chạy file Bomberman.java
+- Sau khi tạo project thành công, trong IntelIJ, click vào thư mục res trong phần quản lí **Project**, chuột phải chọn **Make Directory as**, sau đó chọn **Resources Root** 
+- Chạy file **Bomberman.java**.
 
 ## Mô tả về các đối tượng trong trò chơi
 - ![](res/sprites/player.png) *Bomber* là nhân vật chính của trò chơi. Bomber có thể di chuyển theo 4 hướng trái/phải/lên/xuống theo sự điều khiển của người chơi.
@@ -42,15 +42,16 @@ Các *Item* cũng được giấu phía sau Brick và chỉ hiện ra khi Brick 
 - ![](res/sprites/powerup_bombs.png) *BombItem* Thông thường, nếu không có đối tượng Bomb nào đang trong trạng thái kích hoạt, Bomber sẽ được đặt và kích hoạt duy nhất một đối tượng Bomb. Item này giúp tăng số lượng Bomb có thể đặt thêm một.
 
 Các loại Enemy:
--![](res/sprites/balloom.png) Balloom là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc cố định
 
--![](res/sprites/oneal.png) Oneal có tốc độ di chuyển thay đổi, lúc nhanh, lúc chậm và có thể đuổi theo Bomber nếu trong bán kính tìm kiếm của nó (vùng hoạt động).
+- ![](res/sprites/balloom.png) Balloom là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc cố định
 
--![](res/sprites/doll.png) Doll giống như Balloom nhưng sau một khoảng thời gian cố định, sẽ có một con Doll đặc biệt (duy nhất) có thể nhân bản.
+- ![](res/sprites/oneal.png) Oneal có tốc độ di chuyển thay đổi, lúc nhanh, lúc chậm và có thể đuổi theo Bomber nếu trong bán kính tìm kiếm của nó (vùng hoạt động).
 
--![](res/sprites/doria.png) Doria có tốc độ di chuyển chậm, tìm kiếm và đuổi theo Bomber trong suốt màn chơi, có khả năng đi xuyên qua các khối mềm như Brick, Item.
+- ![](res/sprites/doll.png) Doll giống như Balloom nhưng sau một khoảng thời gian cố định, sẽ có một con Doll đặc biệt (duy nhất) có thể nhân bản.
 
--![](res/sprites/ovape.png) Ovape cũng có khả năng đi xuyên tường. Bình thường Ovape sẽ di chuyển ngẫu nhiên với vận tốc cố đinh, nhưng khi có một Enemy bị chết, Ovape sẽ nổi điên, truy đuổi Bomber trong một khoảng thời gian cũng cố định, đồng thời tăng tốc độ. Hết thời gian "crazy", Ovape sẽ trở lại trạng thái bình thường. Sẽ có âm thanh cảnh báo khi Ovape trong thái "đi săn mồi".
+- ![](res/sprites/doria.png) Doria có tốc độ di chuyển chậm, tìm kiếm và đuổi theo Bomber trong suốt màn chơi, có khả năng đi xuyên qua các khối mềm như Brick, Item.
+
+- ![](res/sprites/ovape.png) Ovape cũng có khả năng đi xuyên tường. Bình thường Ovape sẽ di chuyển ngẫu nhiên với vận tốc cố đinh, nhưng khi có một Enemy bị chết, Ovape sẽ nổi điên, truy đuổi Bomber trong một khoảng thời gian cũng cố định, đồng thời tăng tốc độ. Hết thời gian "crazy", Ovape sẽ trở lại trạng thái bình thường. Sẽ có âm thanh cảnh báo khi Ovape trong thái "đi săn mồi".
 
 ## Mô tả cách chơi
 - Người chơi có thể sử dụng 4 phím điều hướng hoặc 4 phím W/A/S/D để điều khiển nhân vật.
