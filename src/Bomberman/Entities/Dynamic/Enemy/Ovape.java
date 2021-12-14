@@ -14,7 +14,7 @@ public class Ovape extends Enemy {
         super(x, y, Sprite.ovape_dead);
         this.gameContainer = gameContainer;
         this.value = 600;
-        this.speed = 0.1;
+        this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
         this.res = (steps - (int) steps)/steps;
         this.ai = new AILow(this);
@@ -22,16 +22,14 @@ public class Ovape extends Enemy {
 
     @Override
     public void update() {
-        System.out.println(steps);
         if (steps <= 0) {
             turnChasing = Math.max(0,turnChasing - 1);
-            System.out.println("turn " + turnChasing);
             if (turnChasing >= 1 && turnChasing <= 14) {
-                this.speed = 0.3;
+                this.speed = 0.8;
                 this.ai = new AIHigh(gameContainer, this, 1000);
             }
             if (turnChasing == 0) {
-                this.speed = 0.1;
+                this.speed = 0.5;
                 this.ai = new AILow(this);
             }
         }

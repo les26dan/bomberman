@@ -33,6 +33,7 @@ public class AIHigh extends AI {
             double _steps = enemy.getSteps();
             enemy.setRes((_steps - (int) _steps) / _steps);
         }
+        else return enemy.getDirection();
         int direction = 0;
         int posX = enemy.posX();
         int posY = enemy.posY();
