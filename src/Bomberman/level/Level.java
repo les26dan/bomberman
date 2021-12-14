@@ -75,11 +75,7 @@ public class Level {
                         gameContainer.addEntity(pos, new Grass(x, y));
                         gameContainer.addDynamicEntity(new Doll(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer, true));
                         break;
-                    case '4':
-                        gameContainer.addEntity(pos, new Grass(x, y));
-                        gameContainer.addDynamicEntity(new Minvo(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
-                        break;
-                    case '5':
+                     case '5':
                         gameContainer.addEntity(pos, new Grass(x, y));
                         gameContainer.addDynamicEntity(new Doria(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
                         break;

@@ -11,10 +11,10 @@ public class Doria extends Enemy {
     public Doria(int x, int y, GameContainer gameContainer) {
         super(x, y,Sprite.doria_dead);
         this.gameContainer = gameContainer;
-        this.value = 400;
+        this.value = 300;
         this.speed = 0.25;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
-        this.ai = new AIHigh(gameContainer, this, 5);
+        this.ai = new AIHigh(gameContainer, this, 1000);
     }
 
     @Override

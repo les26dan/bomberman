@@ -31,7 +31,6 @@ public class AIMedium extends AI {
             }
         }
     }
-   //  0 : up 1: right 2 down 3 left
     public int calculateHorizontalDirection() {
         if(bomber.getX() < enemy.getX()) {
             return 3;

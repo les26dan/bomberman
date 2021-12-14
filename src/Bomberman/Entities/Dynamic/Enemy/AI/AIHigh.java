@@ -3,15 +3,18 @@ package Bomberman.Entities.Dynamic.Enemy.AI;
 import Bomberman.Entities.Bomb.Bomb;
 import Bomberman.Entities.Box.Grass;
 import Bomberman.Entities.Box.Item.Item;
+import Bomberman.Entities.Box.Portal;
 import Bomberman.Entities.Box.Wall;
 import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Dynamic.Enemy.Doria;
 import Bomberman.Entities.Dynamic.Enemy.Enemy;
+import Bomberman.Entities.Dynamic.Enemy.Oneal;
 import Bomberman.Entities.Dynamic.Enemy.Ovape;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
 import Bomberman.GameContainer;
 
+import javax.sound.sampled.Port;
 import java.util.ArrayList;
 
 public class AIHigh extends AI {
@@ -95,8 +98,7 @@ public class AIHigh extends AI {
                     direction =  calculate(u.getFirst(), u.getSecond());
             }
         } else {
-            AI ai = new AILow(enemy);
-            direction =  ai.calculateDirection();
+            return random.nextInt(4);
         }
         return direction;
     }
@@ -114,7 +116,7 @@ public class AIHigh extends AI {
         if (curY < 0 || curY > 12) return false;
         Entity curEntity =  gameContainer.getEntity(curX, curY, bomber);
         if(enemy instanceof Doria || enemy instanceof Ovape) {
-            return !(curEntity instanceof Wall
+            return !(curEntity instanceof Wall || curEntity instanceof Portal
             || curEntity instanceof Bomb);
         }
         return  curEntity instanceof Grass

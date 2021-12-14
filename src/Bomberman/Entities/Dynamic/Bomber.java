@@ -17,10 +17,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Bomber extends DynamicEntity {
-    protected int numBomb = 8;
+    protected int numBomb = 1;
     protected int numPlantedBomb = 0;
-    protected int flameSize = 2;
-    protected int score;
+    protected int flameSize = 1;
     protected Keyboard input;
     protected int delayBombTime;
     public List<Bomb> bombs;
@@ -144,16 +143,16 @@ public class Bomber extends DynamicEntity {
     @Override
     public boolean collide(Entity e) {
         if(e instanceof Flame) {
-//            dead = true;
+            dead = true;
             return true;
         }
         if(e instanceof Bomb) {
-//            dead = true;
+            dead = true;
             return true;
         }
 
         if(e instanceof Enemy) {
-//            dead = true;
+            dead = true;
             return true;
         }
         return true;
