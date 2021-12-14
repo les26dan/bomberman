@@ -41,7 +41,7 @@ public class Screen {
         int res = addX;
         double bomberPosition = bomber.getX() / Game.BOX_SIZE;
         double addition = 0.5;
-        int left = gameContainer.getWidth() / 4;
+        int left = gameContainer.getWidth() / 4 + 3;
         int right = gameContainer.getWidth() - left;
 
         if( bomberPosition > left + addition && bomberPosition < right - addition) {

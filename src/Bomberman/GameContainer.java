@@ -49,8 +49,8 @@ public class GameContainer {
     }
 
     protected void renderDynamicEntity(Screen screen) {
-        for (DynamicEntity d : dynamicEntities)
-            d.render(screen);
+        for (int i = 0; i < dynamicEntities.size(); i++)
+            dynamicEntities.get(i).render(screen);
     }
 
     protected void renderBombs(Screen screen) {
@@ -154,8 +154,9 @@ public class GameContainer {
     }
 
     void updateDynamic() {
-        for (DynamicEntity d : dynamicEntities) {
-            d.update();
+
+        for (int i = 0; i < dynamicEntities.size(); i++) {
+            dynamicEntities.get(i).update();
         }
     }
 
@@ -203,10 +204,10 @@ public class GameContainer {
                         return b;
                 }
             }
-        for (DynamicEntity cur : dynamicEntities) {
-            if (cur == except) continue;
-            if (cur.posX() == posX && cur.posY() == posY) {
-                return cur;
+        for (int i = 0; i < dynamicEntities.size(); i++) {
+            if (dynamicEntities.get(i) == except) continue;
+            if (dynamicEntities.get(i).posX() == posX && dynamicEntities.get(i).posY() == posY) {
+                return dynamicEntities.get(i);
             }
         }
             return entities[posX + posY * level.getWidth()].getEntity();
@@ -216,9 +217,9 @@ public class GameContainer {
     }
 
     public Bomber getBomber() {
-        for (DynamicEntity dynamicEntity : dynamicEntities) {
-            if (dynamicEntity instanceof Bomber) {
-                return (Bomber) dynamicEntity;
+        for (int i = 0; i < dynamicEntities.size(); i++) {
+            if (dynamicEntities.get(i) instanceof Bomber) {
+                return (Bomber) dynamicEntities.get(i);
             }
         }
         return null;
@@ -232,8 +233,8 @@ public class GameContainer {
     }
     public boolean allEnemiesDead() {
         int res = 0;
-        for (DynamicEntity dynamicEntity: dynamicEntities) {
-            if(dynamicEntity instanceof Enemy)
+        for (int i = 0; i < dynamicEntities.size(); i++) {
+            if(dynamicEntities.get(i) instanceof Enemy)
                 ++res;
         }
         return (res == 0);
