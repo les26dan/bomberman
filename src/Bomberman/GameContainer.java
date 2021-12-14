@@ -30,6 +30,7 @@ public class GameContainer {
     protected int[] existedFlame;
     protected int time;
     protected int points;
+    protected int lastPoints;
     protected int pauseTime;
     protected int screenType;
     private boolean killedEnemy = false;
@@ -38,7 +39,7 @@ public class GameContainer {
         this.game = game;
         this.input = input;
         this.screen = screen;
-        changeLevel(1);
+        newGame();
     }
 
     public void render(Screen screen) {
@@ -66,15 +67,16 @@ public class GameContainer {
         for (Dialog cur : dialogs) {
             g.setFont(new Font("Arial", Font.BOLD, 20));
             g.setColor(Color.yellow);
-            g.drawString(cur.getDialog(), (int) cur.getX(), (int) cur.getY());
+            g.drawString(cur.getDialog(), (int) cur.getX() - Screen.addX  * Game.SCALE, (int) cur.getY());
         }
     }
     public void nextLevel() {
         changeLevel(level.getLevel() + 1);
+        lastPoints = points;
     }
     public void restartLevel() {
         changeLevel(level.getLevel());
-        points = 0;
+        points = lastPoints;
     }
     public void newGame() {
         changeLevel(1);
@@ -84,6 +86,7 @@ public class GameContainer {
         dynamicEntities = new ArrayList<>();
         bombs = new ArrayList<>();
         time = 100;
+        Screen.addX = 0;
         killedEnemy = false;
         if(num != 3) {
             screenType = 1;
@@ -219,6 +222,13 @@ public class GameContainer {
             }
         }
         return null;
+    }
+    public int getWidth() {
+        return level.getWidth();
+    }
+
+    public int getHeight() {
+        return level.getHeight();
     }
     public boolean allEnemiesDead() {
         int res = 0;

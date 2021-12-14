@@ -24,7 +24,7 @@ public class Game extends Canvas {
     private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 
     public static final int BOX_SIZE = 16;
-    public static final int WIDTH = BOX_SIZE * 31, HEIGHT = BOX_SIZE * 13;
+    public static final int WIDTH = BOX_SIZE * 15, HEIGHT = BOX_SIZE * 13;
     public static int SCALE = 3;
 
 

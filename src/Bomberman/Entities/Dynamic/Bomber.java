@@ -55,6 +55,7 @@ public class Bomber extends DynamicEntity {
 
     @Override
     public void render(Screen screen) {
+        Screen.addX = Screen.checkCameraPosition(gameContainer, this);
         if (dead) {
             sprite = Sprite.bomber_dead[0];
             if(deadTime <= 20) sprite = Sprite.bomber_dead[1];

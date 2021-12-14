@@ -1,6 +1,8 @@
 package Bomberman.graphics;
+import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Entity;
 import Bomberman.Game;
+import Bomberman.GameContainer;
 
 import java.awt.*;
 
@@ -9,6 +11,7 @@ public class Screen {
     protected int WIDTH, HEIGHT;
     public int[] pixels;
     private int backgroundColor = 0xffff00ff;
+    public static int addX = 0;
 
     public Screen(int width, int height) {
         WIDTH = width;
@@ -16,13 +19,9 @@ public class Screen {
         pixels = new int[width * height];
     }
 
-    public void clear() {
-        for (int i = 0; i < pixels.length; i++) {
-            pixels[i] = 0;
-        }
-    }
 
     public void renderEntity(int x, int y, Entity entity) {
+        x -= addX;
         for (int v = 0; v < entity.getSprite().getSize(); v++) {
             int yy = v + y;
             for (int u = 0; u < entity.getSprite().getSize(); u++) {
@@ -35,6 +34,21 @@ public class Screen {
                     pixels[xx + yy * WIDTH] = color;
             }
         }
+    }
+
+    public static int checkCameraPosition(GameContainer gameContainer, Bomber bomber) {
+        if(bomber == null) return 0;
+        int res = addX;
+        double bomberPosition = bomber.getX() / Game.BOX_SIZE;
+        double addition = 0.5;
+        int left = gameContainer.getWidth() / 4;
+        int right = gameContainer.getWidth() - left;
+
+        if( bomberPosition > left + addition && bomberPosition < right - addition) {
+            res = (int)bomber.getX()  - (Game.WIDTH / 2);
+        }
+
+        return res;
     }
     public void drawWinGame(Graphics g, int points) {
         g.setColor(Color.black);
