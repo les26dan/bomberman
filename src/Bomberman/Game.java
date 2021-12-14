@@ -1,7 +1,7 @@
 package Bomberman;
 
 import Bomberman.Keyboard.Keyboard;
-import Bomberman.Sound.Sound;
+import Bomberman.Sound.SoundController;
 import Bomberman.UI.Frame;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
@@ -18,6 +18,7 @@ public class Game extends Canvas {
     private Screen screen;
     private Keyboard input;
     private Frame frame;
+    private SoundController soundController;
     private boolean running = false;
 
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -27,12 +28,12 @@ public class Game extends Canvas {
     public static final int WIDTH = BOX_SIZE * 21, HEIGHT = BOX_SIZE * 13;
     public static int SCALE = 3;
 
-
     public Game(Frame frame) {
         this.frame = frame;
         screen = new Screen(WIDTH, HEIGHT);
         input = new Keyboard();
-        gameContainer = new GameContainer(this, input, screen);
+        soundController = new SoundController();
+        gameContainer = new GameContainer(this, input, screen, soundController);
         addKeyListener(input);
         Sprite.init();
     }
@@ -87,6 +88,7 @@ public class Game extends Canvas {
         int dem = 0;
         int pauseTime = 0;
         requestFocus();
+        soundController.changeMusic(SoundController.STAGE_THEME);
         while (running) {
             long cur = System.nanoTime();
             cnt += (cur - lastTime) / (1000000000.0 / rate);
@@ -96,8 +98,6 @@ public class Game extends Canvas {
                     update();
                 cnt--;
             }
-            Sound.stageTheme.start();
-            Sound.stageTheme.loop(Sound.stageTheme.LOOP_CONTINUOUSLY);
             pauseTime = gameContainer.getPauseTime();
             if (pauseTime > 0) {
                 renderScreen();

@@ -1,11 +1,10 @@
 package Bomberman.Entities.Bomb;
 
 import Bomberman.Entities.Dynamic.Bomber;
-import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Entity;
-import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.Sound.Sound;
+import Bomberman.Sound.SoundController;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
 import Bomberman.graphics.Unit;
@@ -73,8 +72,8 @@ public class Bomb extends Entity {
 
     public void explore() {
         if (exploded) return;
-        Sound.bombExplode.setFramePosition(0);
-        Sound.bombExplode.start();
+        Sound sound = new Sound(SoundController.BOMB_EXPLODE);
+        sound.play();
         exploded = true;
         flameList = new ArrayList<>();
         addFlames(0);

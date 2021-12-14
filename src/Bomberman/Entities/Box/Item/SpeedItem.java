@@ -3,6 +3,7 @@ package Bomberman.Entities.Box.Item;
 import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Entity;
 import Bomberman.Sound.Sound;
+import Bomberman.Sound.SoundController;
 import Bomberman.graphics.Sprite;
 
 public class SpeedItem extends Item {
@@ -15,8 +16,8 @@ public class SpeedItem extends Item {
         if(e instanceof Bomber) {
             if(!remove) {
                 ((Bomber) e).addSpeedItem();
-                Sound.eatItem.setFramePosition(0);
-                Sound.eatItem.start();
+                Sound sound = new Sound(SoundController.EAT_ITEM);
+                sound.play();
             }
             remove = true;
             return true;

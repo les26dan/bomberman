@@ -8,6 +8,7 @@ import Bomberman.Game;
 import Bomberman.GameContainer;
 import Bomberman.Keyboard.Keyboard;
 import Bomberman.Sound.Sound;
+import Bomberman.Sound.SoundController;
 import Bomberman.graphics.Unit;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Sprite;
@@ -43,8 +44,9 @@ public class Bomber extends DynamicEntity {
             if (deadTime > 0)
                 deadTime--;
             else {
-                Sound.lifeLost.setFramePosition(0);
-                Sound.lifeLost.start();
+                Sound sound = new Sound(SoundController.LIFE_LOST);
+                sound.play();
+                //gameContainer.getSoundController().changeMusic(SoundController.LIFE_LOST);
                 remove = true;
             }
         } else {
@@ -72,8 +74,8 @@ public class Bomber extends DynamicEntity {
             int posY = Unit.pixelToPos(y + sprite.getSize() / 2.0 - sprite.SIZE);
             Entity e = gameContainer.getEntity(posX, posY, this);
             if (!(e instanceof Bomb)) {
-                Sound.setBomb.setFramePosition(0);
-                Sound.setBomb.start();
+                Sound sound = new Sound(SoundController.SET_BOMB);
+                sound.play();
                 delayBombTime = 15;
                 gameContainer.addBomb(new Bomb(Unit.posToPixel(posX), Unit.posToPixel(posY),flameSize, gameContainer));
                 numPlantedBomb++;
@@ -165,8 +167,8 @@ public class Bomber extends DynamicEntity {
                 if (moving) {
                     sprite = Sprite.bomber_up[_frame];
                     if(_frame == 0) {
-                        Sound.move2.setFramePosition(0);
-                        Sound.move2.start();
+                        SoundController.move2.setFramePosition(0);
+                        SoundController.move2.start();
                     }
                 }
                 break;
@@ -175,8 +177,8 @@ public class Bomber extends DynamicEntity {
                 if (moving) {
                     sprite = Sprite.bomber_right[_frame];
                     if(_frame == 0) {
-                        Sound.move1.setFramePosition(0);
-                        Sound.move1.start();
+                        SoundController.move1.setFramePosition(0);
+                        SoundController.move1.start();
                     }
                 }
                 break;
@@ -185,8 +187,8 @@ public class Bomber extends DynamicEntity {
                 if (moving) {
                     sprite = Sprite.bomber_down[_frame];
                     if(_frame == 0) {
-                        Sound.move2.setFramePosition(0);
-                        Sound.move2.start();
+                        SoundController.move2.setFramePosition(0);
+                        SoundController.move2.start();
                     }
                 }
                 break;
@@ -195,8 +197,8 @@ public class Bomber extends DynamicEntity {
                 if (moving) {
                     sprite = Sprite.bomber_left[_frame];
                     if(_frame == 0) {
-                        Sound.move1.setFramePosition(0);
-                        Sound.move1.start();
+                        SoundController.move1.setFramePosition(0);
+                        SoundController.move1.start();
                     }
                 }
 

@@ -6,6 +6,7 @@ import Bomberman.Entities.Dynamic.DynamicEntity;
 import Bomberman.Entities.Dynamic.Enemy.Enemy;
 import Bomberman.Entities.Entity;
 import Bomberman.Keyboard.Keyboard;
+import Bomberman.Sound.SoundController;
 import Bomberman.UI.Dialog;
 import Bomberman.graphics.Screen;
 import Bomberman.graphics.Unit;
@@ -21,6 +22,7 @@ public class GameContainer {
     protected Game game;
     protected Keyboard input;
     protected Screen screen;
+    private SoundController soundController;
     protected Level level;
     protected Entity[] entities;
     protected List<DynamicEntity> dynamicEntities = new ArrayList<>();
@@ -35,10 +37,11 @@ public class GameContainer {
     protected int screenType;
     private boolean killedEnemy = false;
 
-    public GameContainer(Game game, Keyboard input, Screen screen) {
+    public GameContainer(Game game, Keyboard input, Screen screen, SoundController soundController) {
         this.game = game;
         this.input = input;
         this.screen = screen;
+        this.soundController = soundController;
         newGame();
     }
 
@@ -251,5 +254,9 @@ public class GameContainer {
 
     public void setKilledEnemy(boolean killedEnemy) {
         this.killedEnemy = killedEnemy;
+    }
+
+    public SoundController getSoundController() {
+        return soundController;
     }
 }
