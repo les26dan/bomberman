@@ -73,7 +73,7 @@ public class Level {
                         break;
                     case '3':
                         gameContainer.addEntity(pos, new Grass(x, y));
-                        gameContainer.addDynamicEntity(new Doll(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer));
+                        gameContainer.addDynamicEntity(new Doll(Unit.posToPixel(x), Unit.posToPixel(y) + Game.BOX_SIZE, gameContainer, true));
                         break;
                     case '4':
                         gameContainer.addEntity(pos, new Grass(x, y));
