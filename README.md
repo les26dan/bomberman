@@ -51,7 +51,7 @@ Các loại Enemy:
 
 - ![](res/sprites/doria.png) Doria có tốc độ di chuyển chậm, tìm kiếm và đuổi theo Bomber trong suốt màn chơi, có khả năng đi xuyên qua các khối mềm như Brick, Item.
 
-- ![](res/sprites/ovape.png) Ovape cũng có khả năng đi xuyên tường. Bình thường Ovape sẽ di chuyển ngẫu nhiên với vận tốc cố đinh, nhưng khi có một Enemy bị chết, Ovape sẽ nổi điên, truy đuổi Bomber trong một khoảng thời gian cũng cố định, đồng thời tăng tốc độ. Hết thời gian "crazy", Ovape sẽ trở lại trạng thái bình thường. Sẽ có âm thanh cảnh báo khi Ovape trong thái "đi săn mồi".
+- ![](res/sprites/ovape.png) Ovape cũng có khả năng đi xuyên tường. Bình thường Ovape sẽ di chuyển ngẫu nhiên với vận tốc cố đinh, nhưng khi có một Enemy bị chết, Ovape sẽ nổi điên, truy đuổi Bomber trong một khoảng thời gian cũng cố định, đồng thời tăng tốc độ. Hết thời gian "crazy", Ovape sẽ trở lại trạng thái bình thường. 
 
 ## Mô tả cách chơi
 - Người chơi có thể sử dụng 4 phím điều hướng hoặc 4 phím W/A/S/D để điều khiển nhân vật.
