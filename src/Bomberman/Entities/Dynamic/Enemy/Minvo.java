@@ -14,6 +14,7 @@ public class Minvo extends Enemy {
         this.value = 500;
         this.speed = 0.75;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
+        this.res = (steps - (int) steps)/steps;
         this.ai = new AIHigh(gameContainer, this, 10);
     }
 

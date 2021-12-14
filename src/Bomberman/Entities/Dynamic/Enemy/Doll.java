@@ -17,6 +17,7 @@ public class Doll extends Enemy {
         this.value = 200;
         this.speed = 0.5;
         this.steps = Game.BOX_SIZE * 1.0 / speed;
+        this.res = (steps - (int) steps)/steps;
         this.ai = new AILow(this);
         this.mother = mother;
     }
