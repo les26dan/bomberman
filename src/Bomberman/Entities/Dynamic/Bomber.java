@@ -43,11 +43,9 @@ public class Bomber extends DynamicEntity {
             if (deadTime > 0)
                 deadTime--;
             else {
-                Sound sound = new Sound(SoundController.LIFE_LOST);
-                sound.play();
-                //gameContainer.getSoundController().changeMusic(SoundController.LIFE_LOST);
                 remove = true;
-                gameContainer.restartLevel();
+                gameContainer.getSoundController().changeMusic(SoundController.LIFE_LOST);
+                gameContainer.setRestartLevelTime(4);
             }
         } else {
             move();

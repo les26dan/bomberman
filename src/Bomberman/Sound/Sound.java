@@ -19,7 +19,7 @@ public class Sound {
     }
 
     public void play() {
-        clip.setFramePosition(0);
+        clip.setMicrosecondPosition(0);
         clip.start();
     }
 

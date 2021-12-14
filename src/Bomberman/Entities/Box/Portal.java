@@ -3,6 +3,7 @@ package Bomberman.Entities.Box;
 import Bomberman.Entities.Dynamic.Bomber;
 import Bomberman.Entities.Entity;
 import Bomberman.GameContainer;
+import Bomberman.Sound.SoundController;
 import Bomberman.graphics.Sprite;
 
 public class Portal extends Box {
@@ -16,13 +17,13 @@ public class Portal extends Box {
     public boolean collide(Entity e) {
 
         if (e instanceof Bomber) {
-
             if (!gameContainer.allEnemiesDead())
-                return false;
+               return false;
 
             if (e.posX() == getX() && e.posY() == getY()) {
                 e.remove();
-                gameContainer.setNextLevelTime(4);
+                gameContainer.getSoundController().changeMusic(SoundController.STAGE_COMPLETE);
+                gameContainer.setNextLevelTime(5);
             }
 
             return true;

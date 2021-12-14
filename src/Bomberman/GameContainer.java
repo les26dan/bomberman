@@ -35,6 +35,7 @@ public class GameContainer {
     protected int lastPoints;
     protected int pauseTime;
     protected int nextLevelTime;
+    protected int restartLevelTime;
     protected int screenType;
     private boolean killedEnemy = false;
 
@@ -99,9 +100,11 @@ public class GameContainer {
         killedEnemy = false;
         if (num != 6) {
             screenType = 1;
+            soundController.changeMusic(SoundController.STAGE_START);
             pauseTime = 2;
         } else {
             screenType = 2;
+            soundController.changeMusic(SoundController.ENDING);
             pauseTime = 9999;
             return;
         }
@@ -279,5 +282,13 @@ public class GameContainer {
 
     public SoundController getSoundController() {
         return soundController;
+    }
+
+    public int getRestartLevelTime() {
+        return restartLevelTime;
+    }
+
+    public void setRestartLevelTime(int restartLevelTime) {
+        this.restartLevelTime = restartLevelTime;
     }
 }

@@ -4,6 +4,11 @@ import javax.sound.sampled.Clip;
 
 public class SoundController {
     private Sound curMusic;
+    private Sound stageStart = new Sound(STAGE_START);
+    private Sound stageTheme = new Sound(STAGE_THEME);
+    private Sound stageComplete = new Sound(STAGE_COMPLETE);
+    private Sound ending = new Sound(ENDING);
+    private Sound lifeLost = new Sound(LIFE_LOST);
 
     public static final String TITLE_SCREEN = "tilteScreen";
     public static final String STAGE_START = "stageStart";
@@ -38,7 +43,17 @@ public class SoundController {
         if(curMusic != null) {
             curMusic.pause();
         }
-        curMusic = new Sound(url);
+        if(url.equals(STAGE_START)) {
+            curMusic = stageStart;
+        } else if(url.equals(STAGE_THEME)) {
+            curMusic = stageTheme;
+        } else if(url.equals(STAGE_COMPLETE)) {
+            curMusic = stageComplete;
+        } else if(url.equals(ENDING)) {
+            curMusic = ending;
+        } else {
+            curMusic = lifeLost;
+        }
         playCurMusic();
     }
 
