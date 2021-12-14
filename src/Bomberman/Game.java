@@ -87,7 +87,7 @@ public class Game extends Canvas {
         double cnt = 0;
         int dem = 0;
         int pauseTime = 0;
-        int nextLevelTime = 0;
+        int nextLevelTime ;
         requestFocus();
         soundController.changeMusic(SoundController.STAGE_THEME);
         while (running) {
@@ -101,9 +101,10 @@ public class Game extends Canvas {
             }
             pauseTime = gameContainer.getPauseTime();
             nextLevelTime = gameContainer.getNextLevelTime();
-//            if(nextLevelTime == 1) {
-//                gameContainer.nextLevel();
-//            }
+            if(nextLevelTime == 1) {
+                gameContainer.nextLevel();
+                gameContainer.setNextLevelTime(0);
+            }
             if (pauseTime > 0) {
                 renderScreen();
                 if (pauseTime >= 1000) dem++;

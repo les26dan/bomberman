@@ -153,9 +153,6 @@ public class GameContainer {
             DynamicEntity a = dynamicEntities.get(i);
             if (a.isRemoved()) {
                 dynamicEntities.remove(i);
-                if (a instanceof Bomber) {
-                    restartLevel();
-                }
             }
         }
     }

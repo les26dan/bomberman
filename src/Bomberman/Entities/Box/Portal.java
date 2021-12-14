@@ -21,7 +21,8 @@ public class Portal extends Box {
                 return false;
 
             if (e.posX() == getX() && e.posY() == getY()) {
-                gameContainer.nextLevel();
+                e.remove();
+                gameContainer.setNextLevelTime(4);
             }
 
             return true;
