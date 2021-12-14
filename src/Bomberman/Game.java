@@ -112,6 +112,7 @@ public class Game extends Canvas {
             }
             if(pauseTime == 1) {
                 soundController.changeMusic(SoundController.STAGE_THEME);
+                gameContainer.setPauseTime(0);
             }
             if (pauseTime > 0) {
                 renderScreen();

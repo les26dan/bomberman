@@ -101,7 +101,7 @@ public class GameContainer {
         if (num != 6) {
             screenType = 1;
             soundController.changeMusic(SoundController.STAGE_START);
-            pauseTime = 2;
+            pauseTime = 4;
         } else {
             screenType = 2;
             soundController.changeMusic(SoundController.ENDING);

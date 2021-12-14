@@ -84,6 +84,7 @@ public class AIHigh extends AI {
                 queue.add(new pii(curX, curY-1));
             }
         }
+        if(bomber == null) return random.nextInt(4);
         int bX = bomber.posX();
         int bY = bomber.posY();
         if(visit[bX][bY] && d[bX][bY] <= chasingRadius) {
